@@ -19,5 +19,14 @@ La funcionalidad principal del programa será la asignación de los transportes 
 
 La aplicación en su formato final debería poder registrar nuevas peticiones de viaje, poder dar de alta vehículos, y entregar reportes de las asignaciones. Probablemente los operadores sea quienes den de alta las peticiones y generen las asignaciones y los conductores sean los que hagan mayor uso de los reportes.
 
+### Pruebas para Escenarios Diferentes 
+En el archivo pruebas.cpp se pueden ver las pruebas diseñadas para 3 escenarios extremos en el contexto del programa:
+
+ * cuando no hay clientes
+ * cuendo hay clientes
+ * cuando se excede el número de clientes que se pueden asignar
+
+Cada función involucrada en el proceso se prueba de forma separada y se compara contra el comportamiento esperado en el diseño de la prueba. 
+
 ### Guía de Estilo
 Para mantener buen estilo en el código me basé en los materiales del curso y en la siguiente guía de recomendaciones de estilo:  https://lefticus.gitbooks.io/cpp-best-practices/content/03-Style.html# 
