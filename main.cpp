@@ -3,7 +3,7 @@
  * @brief Programa que vincula a los usarios con el transporte de la situación
  * problema.
  *
- * Los usuarios registran sus peticiones de viaje con sus necesidades
+ * Los usuarios registran se registran como cliente de viaje con sus necesidades
  * específicas el programa asigna los transportes disponibles según las
  * necesidedes y entrega un reporte final.
  *
@@ -14,8 +14,11 @@
 #include <string>
 #include <sstream>
 
-#define MAXP 20  ///< Maximo numero de peticiones.
+#include "Cliente.h"
+
+#define MAXC 20  ///< Maximo numero de clientees.
 #define MAXV 9   ///< Maximo numero de Vehículos.
+
 
 
 /**
@@ -33,22 +36,22 @@ void muestraMenu(){
 /**
  * @brief Asigna los vehiculos a los viajes.
  *
- * Usando el indice de la peticion verifica que exista un vehiculo que pueda
+ * Usando el indice de la cliente verifica que exista un vehiculo que pueda
  * atender la petición y asigna la petición al arreglo.
  *
  * @param indiceP Indice de la Petición a agergar.
  * @param vehiculos Arreglo con los vehículos.
- * @param peticiones Matriz con las peticiones.
+ * @param clientes Arreglo de objetos con los clientes.
  * @param asignaciones Arreglo de asignaciones.
  *
  * @return -1 si no se pudo agregar la petición o la posición donde se asignó
  * la petición .
  */
 int asignarVehiculo(int indiceP, std::string vehiculos[MAXV],
-                        std::string peticiones[MAXP][2],
+                        Cliente clientes[MAXC],
                         int asignaciones[MAXV]) {
 
-    std::string necesidad = peticiones[indiceP][1];
+    std::string necesidad = clientes[indiceP].getNecesidad();
     std::string tipoRequerido = "";
 
     if (necesidad == "4 personas o menos") {
@@ -93,23 +96,23 @@ std::string opNecesidad(std::string opNec){
 }
 
 /**
- * @brief Revisa si la petición acutual ya fue asignada en el arreglo de
- * peticiones.
+ * @brief Revisa si el cliente acutual ya fue asignada en el arreglo de
+ * asignaciones.
  *
  * recorre el arreglo de asignaciones y busca la petición, si la encuentra
  * devuelve true
  *
- * @param peticion Int con el indice de la petición a buscar.
+ * @param idCliente Int con el indice de la petición a buscar.
  * @param asignaciones Arreglo de asignaciones.
  *
  * @return boolean true si encuentra la petición en el arreglo sino false
  *
  */
-bool revisaYaAsignada(int peticion, int asignaciones[MAXV]){
+bool revisaYaAsignada(int idCliente, int asignaciones[MAXV]){
   bool yaAsignada = false;
   int j = 0;
   while ( j < MAXV && !yaAsignada) {
-      if (asignaciones[j] == peticion) {
+      if (asignaciones[j] == idCliente) {
           yaAsignada = true;
       }
       j++ ;
@@ -120,18 +123,18 @@ bool revisaYaAsignada(int peticion, int asignaciones[MAXV]){
 /**
  * @brief Muestra un reporte de las asignaciones generadas.
  *
- * recorre el arreglo de asignaciones y muestra el vehiculo y la peticion
+ * recorre el arreglo de asignaciones y muestra el vehiculo y al cliente
  * correspondiente
  *
  * @param vehiculos Arreglo con los vehículos.
- * @param peticiones Matriz con las peticiones.
+ * @param clientes Arreglos de cleintes.
  * @param asignaciones Arreglo de asignaciones.
  *
  * @return string con el reporte de las asignaciones.
  *
  */
 std::string mostrarAsignaciones(std::string vehiculos[MAXV],
-                          std::string peticiones[MAXP][2],
+                          Cliente clientes[MAXC],
                           int asignaciones[MAXV])  {
 
     std::stringstream aux;
@@ -141,8 +144,9 @@ std::string mostrarAsignaciones(std::string vehiculos[MAXV],
             int indice = asignaciones[i];
             aux << "Vehículo " << vehiculos[i]
                  << " (ID: " << i << ") "
-                 << " asignado a: " << peticiones[indice][0]
-                 << " - Necesidad: " << peticiones[indice][1]
+                 << " asignado a: " << clientes[i].getNombre()
+                 << " en dirección : " << clientes[i].getUbicacion()
+                 << " - Necesidad: " << clientes[i].getNecesidad()
                  << std::endl;
         }
     }
@@ -156,12 +160,12 @@ std::string mostrarAsignaciones(std::string vehiculos[MAXV],
 
 int main() {
 
-    std::string peticiones[MAXP][2];
+    Cliente clientes[MAXC];
     std::string vehiculos[MAXV] = {"auto", "camioneta", "especial", "auto",
                                     "auto", "camioneta", "especial", "auto",
                                     "camioneta"};
     int asignaciones[MAXV] = {-1, -1, -1, -1, -1, -1, -1, -1, -1};
-    int numPeticiones = 0;
+    int numClientes = 0;
 
     int opcion;
     do {
@@ -172,9 +176,13 @@ int main() {
         std::cin.ignore();
 
 
-        if (opcion == 1 && numPeticiones < MAXP) { // 1 crear petición
+        if (opcion == 1 && numClientes < MAXC) { // 1 crear petición
             std::cout << "Nombre del cliente: ";
-            getline(std::cin, peticiones[numPeticiones][0]);
+            std::string nombre = "";
+            getline(std::cin, nombre);
+            std::cout << "Ubicación del cliente: ";
+            std::string ubicacion = "";
+            getline(std::cin, ubicacion);
             std::cout << "Necesidad  selcciona" << std::endl;
             std::cout << "a) 4 personas o menos" << std::endl;
             std::cout << "b) 5 a 7 personas" << std::endl;
@@ -189,25 +197,25 @@ int main() {
               necesidad = opNecesidad(opNec);
             }
 
-            peticiones[numPeticiones][1] = necesidad;
+            clientes[numClientes] = Cliente(nombre, necesidad, ubicacion, false);
 
-            numPeticiones++;
+            numClientes++;
         } else if (opcion == 2) { // 2 generar asignaciones vehículo-petición
-            for (int i = 0; i < numPeticiones; i++) {
+            for (int i = 0; i < numClientes; i++) {
 
                 if (revisaYaAsignada(i, asignaciones) ==  false) {
                     int exito = asignarVehiculo(i, vehiculos,
-                                                peticiones, asignaciones);
+                                                clientes, asignaciones);
                     if(exito == -1){
                       std::cout << "No se pudo asignar petición: "
-                      << peticiones[i][0] << std::endl;
+                      << clientes[i].getNombre() << std::endl;
                     }
                 }
             }
             std::cout << "Proceso de asignación completado." << std::endl;
         }
         else if (opcion == 3) { // 3 mostrar asignaciones
-            std::cout << mostrarAsignaciones(vehiculos, peticiones,
+            std::cout << mostrarAsignaciones(vehiculos, clientes,
                                               asignaciones);
         }
 
