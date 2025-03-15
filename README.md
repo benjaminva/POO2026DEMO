@@ -19,6 +19,8 @@ En el programa actual se puede:
 
 ### Diseño del prorgama (Diagrama de clases UML)
 
+En este diseño se usa asociación, herencia y composición.  
+
 ![diagrama_clases](UML.jpeg)
 
 
