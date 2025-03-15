@@ -17,6 +17,11 @@ En el programa actual se puede:
 
 3. Mostrar asignaciones , se genera un reporte sobre las asignaciones realizadas
 
+### Diseño del prorgama (Diagrama de clases UML)
+
+![diagrama_clases](UML.jpeg)
+
+
 ### Pruebas para Escenarios Diferentes 
 En el archivo pruebas.cpp se pueden ver las pruebas diseñadas para 3 escenarios extremos en el contexto del programa:
 
