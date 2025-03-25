@@ -13,6 +13,8 @@
 class Asignacion {
 private:
 
+  int asignaciones[MAXV];
+
 public:
 
   Asignacion();
@@ -26,14 +28,12 @@ public:
    * @param indiceP Indice de la Petición a agergar.
    * @param vehiculos Arreglo con los vehículos.
    * @param clientes Arreglo de objetos con los clientes.
-   * @param asignaciones Arreglo de asignaciones.
    *
    * @return -1 si no se pudo agregar la petición o la posición donde se asignó
    * la petición .
    */
   int asignarVehiculo(int indiceP, std::string vehiculos[MAXV],
-                          Cliente clientes[MAXC],
-                          int asignaciones[MAXV]);
+                          Cliente clientes[MAXC]);
 
 
   /**
@@ -57,12 +57,11 @@ public:
    * devuelve true
    *
    * @param idCliente Int con el indice de la petición a buscar.
-   * @param asignaciones Arreglo de asignaciones.
    *
    * @return boolean true si encuentra la petición en el arreglo sino false
    *
    */
-  bool revisaYaAsignada(int idCliente, int asignaciones[MAXV]);
+  bool revisaYaAsignada(int idCliente);
 
   /**
    * @brief Muestra un reporte de las asignaciones generadas.
@@ -72,14 +71,12 @@ public:
    *
    * @param vehiculos Arreglo con los vehículos.
    * @param clientes Arreglos de cleintes.
-   * @param asignaciones Arreglo de asignaciones.
    *
    * @return string con el reporte de las asignaciones.
    *
    */
   std::string mostrarAsignaciones(std::string vehiculos[MAXV],
-                            Cliente clientes[MAXC],
-                            int asignaciones[MAXV]);
+                            Cliente clientes[MAXC]);
 };
 
 #endif

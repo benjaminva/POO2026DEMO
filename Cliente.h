@@ -23,7 +23,7 @@ public:
      * @brief Constructor de la clase Cliente por Defecto.
      */
     Cliente();
-    
+
     /**
      * @brief Constructor de la clase Cliente.
      * @param nom Nombre del cliente.
@@ -80,6 +80,12 @@ public:
      * @param nuevoEst Nuevo estado del cliente (`true` para activo, `false` para inactivo).
      */
     void setEstatus(bool nuevoEst);
+
+    /**
+     * @brief Devuelve la información del objeto en formato string
+     * @return Información del obejto en string
+     */
+    std::string toString();
 };
 
 #endif // CLIENTE_H

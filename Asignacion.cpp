@@ -1,28 +1,32 @@
 #include "Asignacion.h"
 
-Asignacion::Asignacion(){}
+Asignacion::Asignacion(){
+  for (int i = 0; i < MAXV; i++ ){
+    asignaciones[i] = -1;
+  }
+}
 
 // @brief Asigna los vehiculos a los viajes.
 int Asignacion::asignarVehiculo(int indiceP, std::string vehiculos[MAXV],
-                        Cliente clientes[MAXC],
-                        int asignaciones[MAXV]) {
+                        Cliente clientes[MAXC]) {
 
     std::string necesidad = clientes[indiceP].getNecesidad();
     std::string tipoRequerido = "";
+    if (necesidad != ""){
+      if (necesidad == "4 personas o menos") {
+          tipoRequerido = "auto";
+      } else if (necesidad == "5 a 7 personas") {
+          tipoRequerido = "camioneta";
+      } else if (necesidad == "Silla de Ruedas") {
+          tipoRequerido = "especial";
+      }
 
-    if (necesidad == "4 personas o menos") {
-        tipoRequerido = "auto";
-    } else if (necesidad == "5 a 7 personas") {
-        tipoRequerido = "camioneta";
-    } else if (necesidad == "Silla de Ruedas") {
-        tipoRequerido = "especial";
-    }
-
-    for (int i = 0; i < MAXV; i++) {
-        if (vehiculos[i] == tipoRequerido && asignaciones[i] == -1) {
-            asignaciones[i] = indiceP;
-            return i;
-        }
+      for (int i = 0; i < MAXV; i++) {
+          if (vehiculos[i] == tipoRequerido && asignaciones[i] == -1) {
+              asignaciones[i] = indiceP;
+              return i;
+          }
+      }
     }
     return -1;
 }
@@ -41,7 +45,7 @@ std::string Asignacion::opNecesidad(std::string opNec){
 }
 
 // Revisa si el cliente acutual ya fue asignada en el arreglo de
-bool Asignacion::revisaYaAsignada(int idCliente, int asignaciones[MAXV]){
+bool Asignacion::revisaYaAsignada(int idCliente){
   bool yaAsignada = false;
   int j = 0;
   while ( j < MAXV && !yaAsignada) {
@@ -55,8 +59,7 @@ bool Asignacion::revisaYaAsignada(int idCliente, int asignaciones[MAXV]){
 
 //@brief Muestra un reporte de las asignaciones generadas.
 std::string Asignacion::mostrarAsignaciones(std::string vehiculos[MAXV],
-                          Cliente clientes[MAXC],
-                          int asignaciones[MAXV])  {
+                          Cliente clientes[MAXC])  {
 
     std::stringstream aux;
     aux << "--- Asignaciones Actuales ---" << std::endl;
