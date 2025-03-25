@@ -25,17 +25,17 @@ En este diseño se usa asociación, herencia y composición.
 
 
 ### Pruebas para Escenarios Diferentes 
-En el archivo pruebas.cpp se pueden ver las pruebas diseñadas para 3 escenarios extremos en el contexto del programa:
+En el archivo pruebas.cpp se pueden ver las pruebas diseñadas para 3 escenarios extremos para la clase de Asignación:
 
- * cuando no hay clientes
- * cuendo hay clientes
- * cuando se excede el número de clientes que se pueden asignar
+ * Prueba 1.- cuando no hay clientes
+ * Prueba 2.-cuendo hay clientes
+ * Prueba 3.-cuando se excede el número de clientes que se pueden asignar
 
 Cada función involucrada en el proceso se prueba de forma separada y se compara contra el comportamiento esperado en el diseño de la prueba. 
-Adicionalmente se prueba el uso de las clases creadas:
+Adicionalmente se prueba el uso de las clases creadas y sus métodos para cada una:
 
- * Vehiculo
- * Asignacion
+ * Prueba 4.-Vehiculo
+ * Prueba 5.-Cliente
 
 ### Guía de Estilo
 Para mantener buen estilo en el código me basé en los materiales del curso y en la siguiente guía de recomendaciones de estilo:  https://lefticus.gitbooks.io/cpp-best-practices/content/03-Style.html# 
