@@ -3,19 +3,18 @@
 
 // Constructor con por defecto
 // Inicializa los atributos de la clase Cliente con los valores por defecto.
-Cliente::Cliente() : nombre(""), necesidad(""), ubicacion(""), estatus(false) {}
+Cliente::Cliente() : nombre(""), ubicacion(""), pasajeros(0),
+                     necesidad(""), estatus(false) {}
 
 
 // Constructor con lista de inicialización
 // Inicializa los atributos de la clase Cliente con los valores proporcionados.
-Cliente::Cliente(std::string nom, std::string nec, std::string ubi, bool est)
-    : nombre(nom), necesidad(nec), ubicacion(ubi), estatus(est) {}
+Cliente::Cliente(std::string nom, std::string ubi, int pas,
+                  std::string nec) :
+                    nombre(nom), ubicacion(ubi), pasajeros(pas),
+                    necesidad(nec), estatus(false) {}
 
 // Implementación de Getters
-// Devuelve la necesidad del cliente.
-std::string Cliente::getNecesidad() const {
-    return necesidad;
-}
 
 // Devuelve el nombre del cliente.
 std::string Cliente::getNombre() const {
@@ -25,6 +24,16 @@ std::string Cliente::getNombre() const {
 // Devuelve la ubicación del cliente.
 std::string Cliente::getUbicacion() const {
     return ubicacion;
+}
+
+// Devuelve la necesidad del cliente.
+std::string Cliente::getNecesidad() const {
+    return necesidad;
+}
+
+// Devuelve la necesidad del cliente.
+int Cliente::getPasajeros() const {
+    return pasajeros;
 }
 
 // Devuelve el estado del cliente (activo/inactivo).
@@ -58,6 +67,7 @@ std::string Cliente::toString(){
   std::stringstream ss;
   ss << " nombre : " << nombre << std::endl
    << " ubicacion : " << ubicacion << std::endl
+   << " pasajeros : " << pasajeros << std::endl
    << " necesidad : "<< necesidad << std::endl
    << " estatus : " << estatus << std::endl;
 

@@ -20,32 +20,32 @@ Vehiculo::Vehiculo(int id, std::string marca,
 // Implementación de Getters
 
 // Devuelve  ID del vehículo
-int Vehiculo::getId(){
+int Vehiculo::getId() const {
   return id;
 }
 
 // Devuelve Marca del vehículo
-std::string Vehiculo::getMarca(){
+std::string Vehiculo::getMarca() const {
   return marca;
 }
 
 // Devuelve Nombre del conductor
-std::string Vehiculo::getConductor(){
+std::string Vehiculo::getConductor() const {
   return conductor;
 }
 
 // Devuelve Tipo de vehículo
-std::string Vehiculo::getTipo(){
+std::string Vehiculo::getTipo() const {
   return tipo;
 }
 
 // Devuelve ubicación
-std::string Vehiculo::getUbicacion(){
+std::string Vehiculo::getUbicacion() const {
   return ubicacion;
 }
 
 // Devuelve número de asientos
-int Vehiculo::getAsientos(){
+int Vehiculo::getAsientos() const {
   return asientos;
 }
 

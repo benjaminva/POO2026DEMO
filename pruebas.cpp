@@ -17,6 +17,7 @@
 #include "Vehiculo.h"
 #include "Cliente.h"
 #include "Asignacion.h"
+#include "Clientela.h"
 
 /**
  * @brief Pruebas de la funcionalidad del programa.
@@ -33,17 +34,18 @@ int main() {
     std::cout << "Prueba 3 : Clase Asignacion" << std::endl;
     std::cout << "Prueba 4 : Clase Vehiculo" << std::endl;
     std::cout << "Prueba 5 : Clase Cliente" << std::endl;
+    std::cout << "Prueba 6 : Clase Clientela" << std::endl;
 
     std::cout << "\nPrueba 1: Cuando los arreglos están vacíos" << std::endl;
 
     Asignacion a;
-    Cliente clientes[MAXC];
+    Clientela clientelaAsig;
     std::string vehiculos[MAXV] = {"auto", "camioneta", "especial", "auto"};
     int numClientes = 0;
 
     // Prueba: No se puede asignar un vehículo cuando no hay clientes.
     std::cout << " Asignar vehículo";
-    int test = a.asignarVehiculo(0, vehiculos, clientes);
+    int test = a.asignarVehiculo(0, vehiculos, clientelaAsig);
     if (test == -1) {
         std::cout << "  éxito" << std::endl;
     } else {
@@ -64,11 +66,11 @@ int main() {
     std::cout << " Mostrar asignaciones";
     std::stringstream ss;
     ss << "--- Asignaciones Actuales ---\n-----------------------------\n";
-    if (ss.str() == a.mostrarAsignaciones(vehiculos, clientes)) {
+    if (ss.str() == a.mostrarAsignaciones(vehiculos, clientelaAsig)) {
         std::cout << "  éxito" << std::endl;
     } else {
         std::cout << "  fracaso" << std::endl;
-        std::cout << a.mostrarAsignaciones(vehiculos, clientes) << std::endl;
+        std::cout << a.mostrarAsignaciones(vehiculos, clientelaAsig) << std::endl;
     }
 
     // Prueba 2: Caso normal con asignaciones posibles e imposibles.
@@ -77,12 +79,12 @@ int main() {
 
     for (int i = 0; i < numClientes; i++) {
         std::string testStr = "test " + std::to_string(i);
-        clientes[i] = Cliente(testStr, "4 personas o menos", "", false);
+        clientelaAsig.creaCliente(testStr, "", 1, "ninguna");
     }
 
     std::cout << " Asignar vehículos cuando es posible" << std::endl;
     for (int i = 0; i < 2; i++) {
-        if (a.asignarVehiculo(i, vehiculos, clientes) != -1) {
+        if (a.asignarVehiculo(i, vehiculos, clientelaAsig) != -1) {
             std::cout << "  éxito" << std::endl;
         } else {
             std::cout << "  fracaso" << std::endl;
@@ -91,7 +93,7 @@ int main() {
 
     std::cout << " Asignar vehículos cuando no es posible" << std::endl;
     for (int i = 2; i < 5; i++) {
-        if (a.asignarVehiculo(i, vehiculos, clientes) == -1) {
+        if (a.asignarVehiculo(i, vehiculos, clientelaAsig) == -1) {
             std::cout << "  éxito" << std::endl;
         } else {
             std::cout << "  fracaso" << std::endl;
@@ -118,18 +120,26 @@ int main() {
 
     std::cout << " Mostrar asignaciones con clientes asignados" << std::endl;
     ss.str(""); // borra el contenido del stream
-    ss << "--- Asignaciones Actuales ---\n"
-       << "Vehículo auto (ID: 0)  asignado a: test 0 en dirección :"
-       << "  - Necesidad: 4 personas o menos\n"
-       << "Vehículo auto (ID: 3)  asignado a: test 3 en dirección :"
-       << "  - Necesidad: 4 personas o menos\n"
-       << "-----------------------------\n";
+    ss << "--- Asignaciones Actuales ---" << std::endl
+      << "Vehículo auto (ID: 0)  asignado a:" << std::endl
+      << " nombre : test 0" << std::endl
+      << " ubicacion : " << std::endl
+      << " pasajeros : 1" << std::endl
+      << " necesidad : ninguna" << std::endl
+      << " estatus : 0" << std::endl << std::endl
+      << "Vehículo auto (ID: 3)  asignado a:" << std::endl
+      << " nombre : test 1" << std::endl
+      << " ubicacion : " << std::endl
+      << " pasajeros : 1" << std::endl
+      << " necesidad : ninguna" << std::endl
+      << " estatus : 0" << std::endl << std::endl
+      << "-----------------------------" << std::endl;
 
-    if (ss.str() == a.mostrarAsignaciones(vehiculos, clientes)) {
+    if (ss.str() == a.mostrarAsignaciones(vehiculos, clientelaAsig)) {
         std::cout << "  éxito" << std::endl;
     } else {
         std::cout << "  fracaso" << std::endl;
-        std::cout << a.mostrarAsignaciones(vehiculos, clientes) << std::endl;
+        std::cout << a.mostrarAsignaciones(vehiculos, clientelaAsig) << std::endl;
     }
 
     // Prueba 3: Cuando se excede el tamaño de los arreglos.
@@ -137,7 +147,7 @@ int main() {
               << " de los arreglos " << std::endl;
 
     std::cout << " Asignar vehículo fuera del rango" << std::endl;
-    if (a.asignarVehiculo(5, vehiculos, clientes) == -1) {
+    if (a.asignarVehiculo(5, vehiculos, clientelaAsig) == -1) {
         std::cout << "  éxito" << std::endl;
     } else {
         std::cout << "  fracaso" << std::endl;
@@ -274,6 +284,7 @@ int main() {
     ss.str("");
     ss << " nombre : " << std::endl
      << " ubicacion : " << std::endl
+     << " pasajeros : 0" << std::endl
      << " necesidad : " << std::endl
      << " estatus : 0" << std::endl;
 
@@ -286,11 +297,12 @@ int main() {
 
 
     std::cout << " Constructor normal";
-    Cliente c2("Benito Pérez", "silla de ruedas", "Coyoacan", false);
+    Cliente c2("Benito Pérez", "Coyoacan", 3, "silla de ruedas");
 
     ss.str("");
     ss << " nombre : Benito Pérez" << std::endl
      << " ubicacion : Coyoacan" << std::endl
+     << " pasajeros : 3" << std::endl
      << " necesidad : silla de ruedas" << std::endl
      << " estatus : 0" << std::endl;
 
@@ -313,6 +325,7 @@ int main() {
     ss.str("");
     ss << " nombre : Agustin" << std::endl
      << " ubicacion : Lienzo Charro" << std::endl
+     << " pasajeros : 0" << std::endl
      << " necesidad : andadera" << std::endl
      << " estatus : 1" << std::endl;
 
@@ -327,12 +340,169 @@ int main() {
 
     ss.str(""); // borra el contenido del stream
     ss << c1.getNecesidad() << c1.getNombre() << c1.getUbicacion()
-      << c1.getEstatus();
-    if (ss.str() == "andaderaAgustinLienzo Charro1") {
+      << c1.getEstatus() << c1.getPasajeros();
+    if (ss.str() == "andaderaAgustinLienzo Charro10") {
         std::cout << "  éxito" << std::endl;
     } else {
         std::cout << "  fracaso" << std::endl;
         std::cout << ss.str() << std::endl;
     }
+
+
+    // Prueba 6: Clase Clientela.
+    std::cout << std::endl << "Prueba 6 : métodos clase Clientela  " << std::endl;
+    std::cout << " Constructor por defecto ";
+
+    Clientela clientela;
+
+    ss.str("");
+    ss << "Clientela : " << std::endl;
+
+    if (clientela.toString() == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << clientela.toString() << std::endl;
+    }
+
+
+    std::cout << " creaCliente ";
+
+    clientela.creaCliente("hugo", "amealco", 4, "ninguna");
+    clientela.creaCliente("paco", "huimilpan", 2, "silla de ruedas");
+    clientela.creaCliente("luis", "periban", 1, "caja 100 kilos");
+
+    ss.str("");
+
+    ss << "Clientela : " << std::endl
+      << " nombre : hugo" << std::endl
+      << " ubicacion : amealco" << std::endl
+      << " pasajeros : 4" << std::endl
+      << " necesidad : ninguna" << std::endl
+      << " estatus : 0" << std::endl
+      << " nombre : paco" << std::endl
+      << " ubicacion : huimilpan" << std::endl
+      << " pasajeros : 2" << std::endl
+      << " necesidad : silla de ruedas" << std::endl
+      << " estatus : 0" << std::endl
+      << " nombre : luis" << std::endl
+      << " ubicacion : periban" << std::endl
+      << " pasajeros : 1" << std::endl
+      << " necesidad : caja 100 kilos" << std::endl
+      << " estatus : 0" << std::endl;
+
+
+    if (clientela.toString() == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << clientela.toString() << std::endl;
+    }
+
+
+    std::cout << " eliminaCliente ";
+
+    clientela.eliminaCliente(1);
+
+    ss.str("");
+
+    ss << "Clientela : " << std::endl
+      << " nombre : hugo" << std::endl
+      << " ubicacion : amealco" << std::endl
+      << " pasajeros : 4" << std::endl
+      << " necesidad : ninguna" << std::endl
+      << " estatus : 0" << std::endl
+      << " nombre : luis" << std::endl
+      << " ubicacion : periban" << std::endl
+      << " pasajeros : 1" << std::endl
+      << " necesidad : caja 100 kilos" << std::endl
+      << " estatus : 0" << std::endl;
+
+    if (clientela.toString() == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << clientela.toString() << std::endl;
+    }
+
+    std::cout << " filtraNecesidad 1 cliente ";
+
+    ss.str("");
+
+    ss << "clientes con necesidad : caja 100 kilos" << std::endl
+      << " nombre : luis" << std::endl
+      << " ubicacion : periban" << std::endl
+      << " pasajeros : 1" << std::endl
+      << " necesidad : caja 100 kilos" << std::endl
+      << " estatus : 0" << std::endl;
+
+    if (clientela.filtraNecesidad("caja 100 kilos") == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << clientela.filtraNecesidad("caja 100 kilos");
+    }
+
+    std::cout << " filtraNecesidad 2 cliente ";
+
+    clientela.creaCliente("magy", "pachuca", 2, "caja 100 kilos");
+    clientela.creaCliente("moni", "toluca", 5, "caja 100 kilos");
+
+
+    ss.str("");
+
+    ss << "clientes con necesidad : caja 100 kilos" << std::endl
+      << " nombre : luis" << std::endl << " ubicacion : periban" << std::endl
+      << " pasajeros : 1" << std::endl
+      << " necesidad : caja 100 kilos" << std::endl
+      << " estatus : 0" << std::endl
+      << " nombre : magy" << std::endl << " ubicacion : pachuca" << std::endl
+      << " pasajeros : 2" << std::endl
+      << " necesidad : caja 100 kilos" << std::endl
+      << " estatus : 0" << std::endl
+      << " nombre : moni" << std::endl << " ubicacion : toluca" << std::endl
+      << " pasajeros : 5" << std::endl
+      << " necesidad : caja 100 kilos" << std::endl
+      << " estatus : 0" << std::endl;
+
+    if (clientela.filtraNecesidad("caja 100 kilos") == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << clientela.filtraNecesidad("caja 100 kilos");
+    }
+
+    std::cout << " consultaCliente valido ";
+
+    Cliente ca = clientela.consultaCliente(0);
+
+    ss.str("");
+
+    ss << " nombre : hugo" << std::endl << " ubicacion : amealco" << std::endl
+       << " pasajeros : 4" << std::endl
+       << " necesidad : ninguna" << std::endl << " estatus : 0" << std::endl;
+    if (ca.toString() == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << ca.toString() << std::endl;
+    }
+
+    std::cout << " consultaCliente invalido ";
+
+    Cliente cb = clientela.consultaCliente(7);
+
+    ss.str("");
+
+    ss << " nombre : " << std::endl << " ubicacion : " << std::endl
+       << " pasajeros : 0" << std::endl
+       << " necesidad : " << std::endl << " estatus : 0" << std::endl;
+    if (cb.toString() == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << cb.toString() << std::endl;
+    }
+
 
 }

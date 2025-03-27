@@ -1,10 +1,10 @@
 #ifndef ASIGNACION_H
 #define ASIGNACION_H
 
-#define MAXC 20  ///< Maximo numero de clientees.
 #define MAXV 9   ///< Maximo numero de Vehículos.
 
 #include "Cliente.h"
+#include "Clientela.h"
 #include "Vehiculo.h"
 
 #include <string>
@@ -33,7 +33,7 @@ public:
    * la petición .
    */
   int asignarVehiculo(int indiceP, std::string vehiculos[MAXV],
-                          Cliente clientes[MAXC]);
+                          Clientela clientela);
 
 
   /**
@@ -76,7 +76,7 @@ public:
    *
    */
   std::string mostrarAsignaciones(std::string vehiculos[MAXV],
-                            Cliente clientes[MAXC]);
+                            Clientela clientela);
 };
 
-#endif
+#endif // ASIGNACION_H

@@ -8,15 +8,21 @@ Asignacion::Asignacion(){
 
 // @brief Asigna los vehiculos a los viajes.
 int Asignacion::asignarVehiculo(int indiceP, std::string vehiculos[MAXV],
-                        Cliente clientes[MAXC]) {
+                        Clientela clientela) {
 
-    std::string necesidad = clientes[indiceP].getNecesidad();
+    std::string necesidad = clientela.consultaCliente(indiceP).getNecesidad();
+    int pasajeros = clientela.consultaCliente(indiceP).getPasajeros();
+
     std::string tipoRequerido = "";
     if (necesidad != ""){
-      if (necesidad == "4 personas o menos") {
+      if (necesidad == "ninguna" && pasajeros < 5) {
           tipoRequerido = "auto";
-      } else if (necesidad == "5 a 7 personas") {
+      }else if (necesidad == "ninguna" && pasajeros < 8) {
           tipoRequerido = "camioneta";
+      } else if (necesidad == "caja 100 kilos") {
+          tipoRequerido = "especial";
+      } else if (necesidad == "caja 500 kilos") {
+          tipoRequerido = "especial";
       } else if (necesidad == "Silla de Ruedas") {
           tipoRequerido = "especial";
       }
@@ -35,13 +41,15 @@ int Asignacion::asignarVehiculo(int indiceP, std::string vehiculos[MAXV],
 std::string Asignacion::opNecesidad(std::string opNec){
 
   if (opNec == "a"){
-    return "4 personas o menos";
+    return "ninguna";
   }else if (opNec == "b"){
-    return "5 a 7 personas";
+    return "caja 100 kilos";
   }else if (opNec == "c"){
-    return "Silla de Ruedas";
+    return "caja 500 kilos";
+  }else if (opNec == "d"){
+    return "silla de ruedas";
   }
-  return "opción no válida por favor elija entre a b c : ";
+  return "opción no válida por favor elija entre a b c d: ";
 }
 
 // Revisa si el cliente acutual ya fue asignada en el arreglo de
@@ -59,7 +67,7 @@ bool Asignacion::revisaYaAsignada(int idCliente){
 
 //@brief Muestra un reporte de las asignaciones generadas.
 std::string Asignacion::mostrarAsignaciones(std::string vehiculos[MAXV],
-                          Cliente clientes[MAXC])  {
+                          Clientela clientela)  {
 
     std::stringstream aux;
     aux << "--- Asignaciones Actuales ---" << std::endl;
@@ -67,11 +75,8 @@ std::string Asignacion::mostrarAsignaciones(std::string vehiculos[MAXV],
         if (asignaciones[i] != -1) {
             int indice = asignaciones[i];
             aux << "Vehículo " << vehiculos[i]
-                 << " (ID: " << i << ") "
-                 << " asignado a: " << clientes[i].getNombre()
-                 << " en dirección : " << clientes[i].getUbicacion()
-                 << " - Necesidad: " << clientes[i].getNecesidad()
-                 << std::endl;
+                 << " (ID: " << i << ") "  << " asignado a:" << std::endl
+                 << clientela.consultaCliente(indice).toString() << std::endl;
         }
     }
     aux << "-----------------------------" << std::endl;

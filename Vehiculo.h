@@ -41,37 +41,37 @@ class Vehiculo {
      * @brief Obtiene el ID del vehículo
      * @return ID del vehículo
      */
-    int getId();
+    int getId() const;
 
     /**
      * @brief Obtiene la marca del vehículo
      * @return Marca del vehículo
      */
-    std::string getMarca();
+    std::string getMarca() const;
 
     /**
      * @brief Obtiene el nombre del conductor
      * @return Nombre del conductor
      */
-    std::string getConductor();
+    std::string getConductor() const;
 
     /**
      * @brief Obtiene el tipo de vehículo
      * @return Tipo de vehículo
      */
-    std::string getTipo();
+    std::string getTipo() const;
 
     /**
      * @brief Obtiene la ubiacaión del vehículo
      * @return Ubicacion de vehículo
      */
-    std::string getUbicacion();
+    std::string getUbicacion() const;
 
     /**
      * @brief Obtiene el número de asientos del vehículo
      * @return Numero de asientos
      */
-    int getAsientos();
+    int getAsientos() const;
 
     /**
      * @brief Establece la marca del vehículo

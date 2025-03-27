@@ -13,9 +13,10 @@
  */
 class Cliente {
 private:
-    std::string necesidad; ///< Necesidad del cliente.
     std::string nombre; ///< Nombre del cliente.
     std::string ubicacion; ///< Ubicación del cliente.
+    std::string necesidad; ///< Necesidad del cliente.
+    int pasajeros; ///< Numero de pasajeros que el cliente ocupa en el viaje.
     bool estatus; ///< Estado del cliente (activo/inactivo).
 
 public:
@@ -27,17 +28,11 @@ public:
     /**
      * @brief Constructor de la clase Cliente.
      * @param nom Nombre del cliente.
-     * @param nec Necesidad del cliente.
      * @param ubi Ubicación del cliente.
-     * @param est Estado del cliente (por defecto `false`).
+     * @param pas Cantidad de pasajeros.
+     * @param nec Necesidad del cliente.
      */
-    Cliente(std::string nom, std::string nec, std::string ubi, bool est);
-
-    /**
-     * @brief Obtiene la necesidad del cliente.
-     * @return La necesidad del cliente.
-     */
-    std::string getNecesidad() const;
+    Cliente(std::string nom, std::string ubi, int pas, std::string nec);
 
     /**
      * @brief Obtiene el nombre del cliente.
@@ -50,6 +45,18 @@ public:
      * @return La ubicación del cliente.
      */
     std::string getUbicacion() const;
+
+    /**
+     * @brief Obtiene la necesidad del cliente.
+     * @return La necesidad del cliente.
+     */
+    std::string getNecesidad() const;
+
+    /**
+     * @brief Obtiene el numero de pasajeros.
+     * @return int Numero de pasejeros.
+     */
+    int getPasajeros() const;
 
     /**
      * @brief Obtiene el estado del cliente.
@@ -83,7 +90,7 @@ public:
 
     /**
      * @brief Devuelve la información del objeto en formato string
-     * @return Información del obejto en string
+     * @return Información del objeto en string
      */
     std::string toString();
 };
