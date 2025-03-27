@@ -36,6 +36,7 @@ Adicionalmente se prueba el uso de las clases creadas y sus métodos para cada u
 
  * Prueba 4.-Vehiculo
  * Prueba 5.-Cliente
+ * Prueba 6.-Clientela
 
 ### Guía de Estilo
 Para mantener buen estilo en el código me basé en los materiales del curso y en la siguiente guía de recomendaciones de estilo:  https://lefticus.gitbooks.io/cpp-best-practices/content/03-Style.html# 
