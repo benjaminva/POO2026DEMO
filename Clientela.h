@@ -3,6 +3,7 @@
 
 
 #define MAXC 20  ///< Maximo numero de clientes.
+
 #include "Cliente.h"
 #include <string>
 

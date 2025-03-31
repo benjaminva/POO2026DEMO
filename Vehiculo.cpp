@@ -4,7 +4,7 @@
 
 
 // Constructor por defecto
-//Inicializa el vehículo con valores por defecto.
+// Inicializa el vehículo con valores por defecto.
 Vehiculo::Vehiculo(): id(0), marca(""),conductor(""),tipo(""), ubicacion(""),
                       precio(0.0), asientos(0){}
 
@@ -102,4 +102,80 @@ std::string Vehiculo::toString(){
    << " asientos : " << asientos  << std::endl;
 
    return ss.str();
+}
+
+//Constructor por defetco
+Auto::Auto():Vehiculo(){}
+
+//Constructor con parámetros
+Auto::Auto(int id, std::string marca, std::string conductor,
+    std::string ubicacion, float precio, int asientos):
+      Vehiculo(id, marca, conductor, "auto", ubicacion, precio, asientos) {}
+
+// Constructor por defetco
+Camioneta::Camioneta():Vehiculo(), modTarifa(0){}
+
+// Constructor con parámetros
+Camioneta::Camioneta(int id, std::string marca, std::string conductor,
+          std::string ubicacion, float precio, int asientos, float modTarifa):
+            Vehiculo(id, marca, conductor, "camioneta", ubicacion, precio, asientos),
+            modTarifa(modTarifa) {}
+
+// Actualiza el valor del modificador de la tarifa
+void Camioneta::setModTarifa( float tar){
+  modTarifa = tar;
+}
+
+// Devuelve la información del objeto en formato string
+std::string Camioneta::toString(){
+  std::stringstream ss;
+  ss << Vehiculo::toString()
+    << " modificador tarifa : " << modTarifa  << std::endl;
+  return ss.str();
+}
+
+//Constructor por defetco
+Especial::Especial():Vehiculo(), modTarifa(0), sillaRuedas(false), cajaMaterial(false),
+  pesoMax(0){}
+
+
+//Constructor con parámetros
+Especial::Especial(int id, std::string marca, std::string conductor,
+   std::string ubicacion, float precio,
+   int asientos, float modTarifa,  bool sillaRuedas,
+   bool cajaMaterial, float pesoMax) :
+     Vehiculo(id, marca, conductor, "especial", ubicacion, precio, asientos),
+     modTarifa(modTarifa), sillaRuedas(sillaRuedas), cajaMaterial(cajaMaterial),
+     pesoMax(pesoMax){}
+
+//Si el vehiculo tiene espacio para silla de ruedas o no
+bool Especial::getSillaRuedas() const{
+    return sillaRuedas;
+}
+
+//Si el vehiculo tiene caja trasera para carga de material
+bool Especial::getCajaMaterial() const{
+    return cajaMaterial;
+}
+
+//Obtiene el peso maximo que puede cargar el vehículo
+float Especial::getPesoMax() const{
+    return pesoMax;
+}
+
+//Actualiza el valor del modificador de la tarifa
+void Especial::setModTarifa( float tar ){
+    modTarifa = tar;
+}
+
+//Devuelve la información del objeto en formato string
+std::string Especial::toString(){
+  std::stringstream ss;
+  ss << Vehiculo::toString()
+  << " modificador tarifa : " << modTarifa  << std::endl
+  << " espacio para silla de ruedas : " << sillaRuedas  << std::endl
+  << " tiene caja de carga : " << cajaMaterial  << " capacidad kg : " << pesoMax
+  << std::endl;
+
+  return ss.str();
 }

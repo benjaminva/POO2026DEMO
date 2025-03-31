@@ -18,6 +18,7 @@
 #include "Cliente.h"
 #include "Asignacion.h"
 #include "Clientela.h"
+#include "Flota.h"
 
 /**
  * @brief Pruebas de la funcionalidad del programa.
@@ -28,13 +29,17 @@
  *
  */
 int main() {
-    std::cout << "Pruebas por clases:" << std::endl;
+    std::cout << "Reporte de pruebas por clases:" << std::endl;
     std::cout << "Prueba 1 : Clase Asignacion" << std::endl;
     std::cout << "Prueba 2 : Clase Asignacion" << std::endl;
     std::cout << "Prueba 3 : Clase Asignacion" << std::endl;
     std::cout << "Prueba 4 : Clase Vehiculo" << std::endl;
     std::cout << "Prueba 5 : Clase Cliente" << std::endl;
     std::cout << "Prueba 6 : Clase Clientela" << std::endl;
+    std::cout << "Prueba 7 : Clase hija Auto" << std::endl;
+    std::cout << "Prueba 8 : Clase hija Camionte" << std::endl;
+    std::cout << "Prueba 9 : Clase hija Especial" << std::endl;
+    std::cout << "Prueba 10 : Clase Flota" << std::endl;
 
     std::cout << "\nPrueba 1: Cuando los arreglos están vacíos" << std::endl;
 
@@ -502,6 +507,349 @@ int main() {
     } else {
         std::cout << "  fracaso" << std::endl;
         std::cout << cb.toString() << std::endl;
+    }
+
+    // Prueba 7: Clase hija Auto.
+    std::cout << std::endl << "Prueba 7 : métodos clase hija Auto" << std::endl;
+    std::cout << " Constructor por defecto ";
+
+    Auto auto1;
+
+    ss.str("");
+    ss << " id : 0" << std::endl
+       << " marca : " << std::endl
+       << " conductor : " << std::endl
+       << " tipo : " << std::endl
+       << " ubicacion : " << std::endl
+       << " precio : 0" << std::endl
+       << " asientos : 0" << std::endl;
+
+    if (auto1.toString() == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << auto1.toString() << std::endl;
+    }
+
+
+    std::cout << " Constructor normal";
+    Auto auto2(10, "Mazda", "Mijares","Acapulco", 7.4, 4);
+
+    ss.str("");
+    ss << " id : 10" << std::endl
+       << " marca : Mazda" << std::endl
+       << " conductor : Mijares" << std::endl
+       << " tipo : auto" << std::endl
+       << " ubicacion : Acapulco" << std::endl
+       << " precio : 7.4" << std::endl
+       << " asientos : 4" << std::endl;
+
+    if (auto2.toString() == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << auto2.toString() << std::endl;
+    }
+
+    // Prueba 8: Clase hija Camioneta.
+    std::cout << std::endl << "Prueba 8 : métodos clase hija Camioneta"
+    << std::endl;
+    std::cout << " Constructor por defecto ";
+
+    Camioneta cam1;
+
+    ss.str("");
+    ss << " id : 0" << std::endl
+       << " marca : " << std::endl
+       << " conductor : " << std::endl
+       << " tipo : " << std::endl
+       << " ubicacion : " << std::endl
+       << " precio : 0" << std::endl
+       << " asientos : 0" << std::endl
+       << " modificador tarifa : 0"<< std::endl;
+
+
+    if (cam1.toString() == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << cam1.toString() << std::endl;
+    }
+
+
+    std::cout << " Constructor normal";
+    Camioneta cam2(18, "Ford", "Luis Mirey","Edo de Mexico", 20.4, 7, 1.8);
+
+    ss.str("");
+    ss << " id : 18" << std::endl
+       << " marca : Ford" << std::endl
+       << " conductor : Luis Mirey" << std::endl
+       << " tipo : camioneta" << std::endl
+       << " ubicacion : Edo de Mexico" << std::endl
+       << " precio : 20.4" << std::endl
+       << " asientos : 7" << std::endl
+       << " modificador tarifa : 1.8"<< std::endl;
+
+
+    if (cam2.toString() == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << cam2.toString() << std::endl;
+    }
+
+    std::cout << " setter";
+    cam2.setModTarifa(120.1);
+
+    ss.str("");
+    ss << " id : 18" << std::endl
+       << " marca : Ford" << std::endl
+       << " conductor : Luis Mirey" << std::endl
+       << " tipo : camioneta" << std::endl
+       << " ubicacion : Edo de Mexico" << std::endl
+       << " precio : 20.4" << std::endl
+       << " asientos : 7" << std::endl
+       << " modificador tarifa : 120.1"<< std::endl;
+
+
+    if (cam2.toString() == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << cam2.toString() << std::endl;
+    }
+
+    // Prueba 9: Clase hija Especial.
+    std::cout << std::endl << "Prueba 9 : métodos clase hija Especial"
+    << std::endl;
+    std::cout << " Constructor por defecto ";
+
+    Especial esp1;
+
+    ss.str("");
+    ss << " id : 0" << std::endl
+       << " marca : " << std::endl
+       << " conductor : " << std::endl
+       << " tipo : " << std::endl
+       << " ubicacion : " << std::endl
+       << " precio : 0" << std::endl
+       << " asientos : 0" << std::endl
+       << " modificador tarifa : 0" << std::endl
+       << " espacio para silla de ruedas : 0" << std::endl
+       << " tiene caja de carga : 0" << " capacidad kg : 0" << std::endl;
+
+
+    if (esp1.toString() == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << esp1.toString() << std::endl;
+    }
+
+
+    std::cout << " Constructor normal silla ruedas ";
+    Especial esp2(53, "Chrisler", "Bowey","Nuevo Leon", 30.4, 3,
+                    2.1, true, false, 0);
+
+    ss.str("");
+    ss << " id : 53" << std::endl
+       << " marca : Chrisler" << std::endl
+       << " conductor : Bowey" << std::endl
+       << " tipo : especial" << std::endl
+       << " ubicacion : Nuevo Leon" << std::endl
+       << " precio : 30.4" << std::endl
+       << " asientos : 3" << std::endl
+       << " modificador tarifa : 2.1" << std::endl
+       << " espacio para silla de ruedas : 1" << std::endl
+       << " tiene caja de carga : 0" << " capacidad kg : 0" << std::endl;
+
+
+    if (esp2.toString() == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << esp2.toString() << std::endl;
+    }
+
+    std::cout << " Constructor normal caja de carga ";
+    Especial esp3(71, "Chrisler", "Dan Brown","Sonora", 20.4, 2,
+                    1.8, false, true, 500);
+
+    ss.str("");
+    ss << " id : 71" << std::endl
+       << " marca : Chrisler" << std::endl
+       << " conductor : Dan Brown" << std::endl
+       << " tipo : especial" << std::endl
+       << " ubicacion : Sonora" << std::endl
+       << " precio : 20.4" << std::endl
+       << " asientos : 2" << std::endl
+       << " modificador tarifa : 1.8" << std::endl
+       << " espacio para silla de ruedas : 0" << std::endl
+       << " tiene caja de carga : 1" << " capacidad kg : 500" << std::endl;
+
+
+    if (esp3.toString() == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << esp3.toString() << std::endl;
+    }
+
+    std::cout << " getters";
+
+    ss.str("");
+    ss << esp3.getSillaRuedas() << esp3.getCajaMaterial() << esp3.getPesoMax();
+
+    if (ss.str() == "01500") {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << esp3.toString() << std::endl;
+    }
+
+
+    std::cout << " setters";
+    esp3.setModTarifa(120.1);
+
+    ss.str("");
+    ss << " id : 71" << std::endl
+       << " marca : Chrisler" << std::endl
+       << " conductor : Dan Brown" << std::endl
+       << " tipo : especial" << std::endl
+       << " ubicacion : Sonora" << std::endl
+       << " precio : 20.4" << std::endl
+       << " asientos : 2" << std::endl
+       << " modificador tarifa : 120.1" << std::endl
+       << " espacio para silla de ruedas : 0" << std::endl
+       << " tiene caja de carga : 1" << " capacidad kg : 500" << std::endl;
+
+
+    if (esp3.toString() == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << esp3.toString() << std::endl;
+    }
+
+
+    // Prueba 10: Clase Flota.
+    std::cout << std::endl << "Prueba 10 : métodos Flota"
+    << std::endl;
+
+    Flota flota;
+
+    std::cout << " crea Auto ";
+
+    flota.creaAuto(10, "Mazda", "Mijares","Acapulco", 7.4, 4);
+    flota.creaAuto(11, "Mazda", "Juan Gabriel","Michoacan", 8.0, 4);
+
+
+    ss.str("");
+    ss << "tipo auto :"<< std::endl;
+    ss << " id : 10" << std::endl
+       << " marca : Mazda" << std::endl
+       << " conductor : Mijares" << std::endl
+       << " tipo : auto" << std::endl
+       << " ubicacion : Acapulco" << std::endl
+       << " precio : 7.4" << std::endl
+       << " asientos : 4" << std::endl;
+
+    ss << " id : 11" << std::endl
+       << " marca : Mazda" << std::endl
+       << " conductor : Juan Gabriel" << std::endl
+       << " tipo : auto" << std::endl
+       << " ubicacion : Michoacan" << std::endl
+       << " precio : 8" << std::endl
+       << " asientos : 4" << std::endl;
+
+
+    if (flota.filtrarVehiculo("tipo","auto") == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << flota.filtrarVehiculo("tipo","auto") << std::endl;
+    }
+
+    std::cout << " crea Camioneta ";
+
+
+    flota.creaCamioneta(18, "Ford", "Luis Mirey","Edo de Mexico", 20.4, 7, 1.8);
+    flota.creaCamioneta(19, "Ford", "Chayan","Chiapas", 10.4, 6, 2.8);
+
+    ss.str("");
+    ss << "tipo camioneta :"<< std::endl;
+    ss << " id : 18" << std::endl
+       << " marca : Ford" << std::endl
+       << " conductor : Luis Mirey" << std::endl
+       << " tipo : camioneta" << std::endl
+       << " ubicacion : Edo de Mexico" << std::endl
+       << " precio : 20.4" << std::endl
+       << " asientos : 7" << std::endl
+       << " modificador tarifa : 1.8"<< std::endl;
+
+    ss << " id : 19" << std::endl
+        << " marca : Ford" << std::endl
+        << " conductor : Chayan" << std::endl
+        << " tipo : camioneta" << std::endl
+        << " ubicacion : Chiapas" << std::endl
+        << " precio : 10.4" << std::endl
+        << " asientos : 6" << std::endl
+        << " modificador tarifa : 2.8"<< std::endl;
+
+    if (flota.filtrarVehiculo("tipo","camioneta") == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << flota.filtrarVehiculo("tipo","camioneta") << std::endl;
+    }
+
+    std::cout << " crea especial ";
+
+
+    flota.creaEspecial(21, "Chrisler", "Dan Brown","Sonora", 20.4, 2,
+      1.8, false, true, 500);
+    flota.creaEspecial(22, "Chrisler", "Humberto","Italia", 40.4, 1,
+        1.8, false, true, 400);
+
+    ss.str("");
+    ss << "tipo especial :"<< std::endl;
+    ss << " id : 21" << std::endl
+       << " marca : Chrisler" << std::endl
+       << " conductor : Dan Brown" << std::endl
+       << " tipo : especial" << std::endl
+       << " ubicacion : Sonora" << std::endl
+       << " precio : 20.4" << std::endl
+       << " asientos : 2" << std::endl
+       << " modificador tarifa : 1.8" << std::endl
+       << " espacio para silla de ruedas : 0" << std::endl
+       << " tiene caja de carga : 1" << " capacidad kg : 500" << std::endl;
+
+   ss << " id : 22" << std::endl
+      << " marca : Chrisler" << std::endl
+      << " conductor : Humberto" << std::endl
+      << " tipo : especial" << std::endl
+      << " ubicacion : Italia" << std::endl
+      << " precio : 40.4" << std::endl
+      << " asientos : 1" << std::endl
+      << " modificador tarifa : 1.8" << std::endl
+      << " espacio para silla de ruedas : 0" << std::endl
+      << " tiene caja de carga : 1" << " capacidad kg : 400" << std::endl;
+
+
+    if (flota.filtrarVehiculo("tipo","especial") == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << flota.filtrarVehiculo("tipo","especial") << std::endl;
+    }
+
+    std::cout << " promedio tarifas ";
+
+    if ((int)(flota.promedioTarifas()*1000) == 30533) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << (int)(flota.promedioTarifas()*1000)  << std::endl;
     }
 
 

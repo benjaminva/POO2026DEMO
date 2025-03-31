@@ -12,7 +12,7 @@
   * @author Benjamín Valdés Aguirre
   */
 class Vehiculo {
-  private:
+  protected:
     int id; ///< Identificador único del vehículo
     std::string marca; ///< Marca del vehículo
     std::string conductor; ///< Nombre del conductor del vehículo
@@ -117,4 +117,141 @@ class Vehiculo {
 
 };
 
-#endif
+/**
+  * @brief Clase que representa un auto derivado de un Vehiculo
+  *
+  * Contiene la información auto.
+  *
+  * @author Benjamín Valdés Aguirre
+  */
+class Auto : public Vehiculo{
+  public:
+
+    /**
+     * @brief Constructor por defetco
+     */
+    Auto();
+
+    /**
+     * @brief Constructor con parámetros
+     * @param id Identificador único del vehículo
+     * @param marca Marca del vehículo
+     * @param conductor Nombre del conductor
+     * @param tipo Tipo de vehículo
+     */
+    Auto(int id, std::string marca, std::string conductor,
+        std::string ubicacion, float precio, int asientos);
+
+};
+
+/**
+  * @brief Clase que representa un auto derivado de un Vehiculo
+  *
+  * Contiene la información auto.
+  *
+  * @author Benjamín Valdés Aguirre
+  */
+class Camioneta : public Vehiculo{
+  private:
+    float modTarifa;
+
+  public:
+
+    /**
+     * @brief Constructor por defetco
+     */
+    Camioneta();
+
+    /**
+     * @brief Constructor con parámetros
+     * @param id Identificador único del vehículo
+     * @param marca Marca del vehículo
+     * @param conductor Nombre del conductor
+     * @param tipo Tipo de vehículo
+     * @param tarifa El monto modifacadore de tarifas 1.5 1.8
+     */
+    Camioneta(int id, std::string marca, std::string conductor,
+        std::string ubicacion, float precio, int asientos, float modTarifa);
+
+    /**
+     * @brief Actualiza el valor del modificador de la tarifa
+     * @param tar Valor del nuevo modifcador de la tarifa
+     */
+    void setModTarifa( float tar);
+
+    /**
+     * @brief Devuelve la información del objeto en formato string
+     * @return Información del obejto en string
+     */
+    std::string toString();
+
+};
+
+/**
+  * @brief Clase que representa un auto derivado de un Vehiculo
+  *
+  * Contiene la información auto.
+  *
+  * @author Benjamín Valdés Aguirre
+  */
+class Especial : public Vehiculo{
+  private:
+    float modTarifa;
+    bool sillaRuedas;
+    bool cajaMaterial;
+    float pesoMax;
+
+
+  public:
+
+    /**
+     * @brief Constructor por defetco
+     */
+    Especial();
+
+    /**
+     * @brief Constructor con parámetros
+     * @param id Identificador único del vehículo
+     * @param marca Marca del vehículo
+     * @param conductor Nombre del conductor
+     * @param tipo Tipo de vehículo
+     * @param tarifa El monto modifacadore de tarifas 1.5 1.8
+     */
+    Especial(int id, std::string marca, std::string conductor,
+       std::string ubicacion, float precio,
+       int asientos, float modTarifa,  bool sillaRuedas,
+       bool cajaMaterial, float pesoMax);
+
+    /**
+     * @brief Si el vehiculo tiene espacio para silla de ruedas o no
+     * @return Verdadero si tiene espacio para silla de ruedas
+     */
+    bool getSillaRuedas() const;
+
+    /**
+     * @brief Si el vehiculo tiene caja trasera para carga de material
+     * @return Verdadero si tiene caja
+     */
+    bool getCajaMaterial() const;
+
+    /**
+     * @brief Obtiene el peso maximo que puede cargar el vehículo
+     * @return Peso Máximo
+     */
+    float getPesoMax() const;
+
+    /**
+     * @brief Actualiza el valor del modificador de la tarifa
+     * @param tar Valor del nuevo modifcador de la tarifa
+     */
+    void setModTarifa( float tar ) ;
+
+    /**
+     * @brief Devuelve la información del objeto en formato string
+     * @return Información del obejto en string
+     */
+    std::string toString();
+
+};
+
+#endif // VEHICULO_H

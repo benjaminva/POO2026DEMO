@@ -1,11 +1,10 @@
 #ifndef ASIGNACION_H
 #define ASIGNACION_H
 
-#define MAXV 9   ///< Maximo numero de Vehículos.
-
 #include "Cliente.h"
 #include "Clientela.h"
 #include "Vehiculo.h"
+#include "Flota.h"
 
 #include <string>
 #include <sstream>
