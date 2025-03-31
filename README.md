@@ -11,11 +11,20 @@ Los usuarios del programa serán los conductores y los operadores de la compañ�
 ### Funcionalidad
 En el programa actual se puede:
 
-1. Agregar petición , se crea un cliente con una necesidad
+1. Agregar petición , se crea una petición por cliente donde se especifica la necesidad y con esto se asigna el servicio. se atiendes 3 tipos de necesidades:
 
-2. Asignar vehículos , se asignan los vahículos registrados en el programa para atender las peticiones de los clientes
+   1.1 transporte normal de 1 a 4 personas,
 
-3. Mostrar asignaciones , se genera un reporte sobre las asignaciones realizadas
+   1.2 transporte camioneta se atiende de 5 a 7 personas,
+
+   1.3 transporte espcial que puede tener silla de ruedas o cajas para carga de material de 500 kg o 1000 kg. 
+                     
+
+3. Asignar vehículos , se asignan los vahículos registrados en el programa para atender las peticiones de los clientes. La asignación se base primero en el tipo de necesidad registrada, después en el número de pasajeros y la ubicación.
+
+4. Mostrar asignaciones, se genera un reporte sobre las asignaciones realizadas para que los administradores del servicio lo puedan revisar
+   
+5. Generar reportes, se permiten realizar diversos reportes desde la plataforma sobre los vehículos y los clientes.
 
 ### Diseño del prorgama (Diagrama de clases UML)
 
@@ -37,6 +46,10 @@ Adicionalmente se prueba el uso de las clases creadas y sus métodos para cada u
  * Prueba 4.-Vehiculo
  * Prueba 5.-Cliente
  * Prueba 6.-Clientela
+ * Prueba 7.-Auto
+ * Prueba 8.-Camioneta
+ * Prueba 9.-Especial
+ * Prueba 10.- Flota
 
 ### Guía de Estilo
 Para mantener buen estilo en el código me basé en los materiales del curso y en la siguiente guía de recomendaciones de estilo:  https://lefticus.gitbooks.io/cpp-best-practices/content/03-Style.html# 
