@@ -142,6 +142,20 @@ class Auto : public Vehiculo{
     Auto(int id, std::string marca, std::string conductor,
         std::string ubicacion, float precio, int asientos);
 
+    /**
+     * @brief Devuelve la información del objeto en formato string
+     * @return Información del obejto en string
+     */
+    std::string toString();
+
+
+    /**
+     * @brief Calclula el costo del tipo de auto
+     * @return Costo de la tarifa
+     */
+    float calculaTarifa();
+
+
 };
 
 /**
@@ -174,6 +188,17 @@ class Camioneta : public Vehiculo{
         std::string ubicacion, float precio, int asientos, float modTarifa);
 
     /**
+     * @brief Constructor con parámetros
+     * @param id Identificador único del vehículo
+     * @param marca Marca del vehículo
+     * @param conductor Nombre del conductor
+     * @param tipo Tipo de vehículo
+     * @param tarifa El monto modifacadore de tarifas 1.5 1.8
+     */
+    Camioneta(int id, std::string marca, std::string conductor,
+        std::string ubicacion, float precio, int asientos);
+
+    /**
      * @brief Actualiza el valor del modificador de la tarifa
      * @param tar Valor del nuevo modifcador de la tarifa
      */
@@ -184,6 +209,14 @@ class Camioneta : public Vehiculo{
      * @return Información del obejto en string
      */
     std::string toString();
+
+
+    /**
+      * @brief Calclula el costo del tipo de auto
+      * @return Costo de la tarifa
+      */
+    float calculaTarifa();
+
 
 };
 
@@ -216,11 +249,32 @@ class Especial : public Vehiculo{
      * @param conductor Nombre del conductor
      * @param tipo Tipo de vehículo
      * @param tarifa El monto modifacadore de tarifas 1.5 1.8
+     * @param sillaRuedas Si el vehiculo cuenta con silla de ruedas
+     * @param cajaMateial Si el vehículo cuenta con caja para material
+     * @param pesoMax Valor máximo de peso que soporta la caja de carga
      */
     Especial(int id, std::string marca, std::string conductor,
        std::string ubicacion, float precio,
        int asientos, float modTarifa,  bool sillaRuedas,
        bool cajaMaterial, float pesoMax);
+
+    /**
+     * @brief Constructor con parámetros donde la tarifa se infiere a partir del
+     *        tipo de necesidad : silla de ruedas  ->   2.0
+     *                            cajaMaterial 500 ->   1.8
+     *                            cajaMaterial 1000 ->  2.1
+     * @param id Identificador único del vehículo
+     * @param marca Marca del vehículo
+     * @param conductor Nombre del conductor
+     * @param tipo Tipo de vehículo
+     * @param sillaRuedas Si el vehiculo cuenta con silla de ruedas
+     * @param cajaMateial Si el vehículo cuenta con caja para material
+     * @param pesoMax Valor máximo de peso que soporta la caja de carga
+     */
+    Especial(int id, std::string marca, std::string conductor,
+       std::string ubicacion, float precio, int asientos, bool sillaRuedas,
+       bool cajaMaterial, float pesoMax);
+
 
     /**
      * @brief Si el vehiculo tiene espacio para silla de ruedas o no
@@ -251,6 +305,14 @@ class Especial : public Vehiculo{
      * @return Información del obejto en string
      */
     std::string toString();
+
+    /**
+      * @brief Calclula el costo del tipo de auto
+      * @return Costo de la tarifa
+      */
+    float calculaTarifa();
+
+
 
 };
 

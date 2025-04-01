@@ -17,6 +17,19 @@ void Clientela::creaCliente(std::string nom, std::string ubi,
   }
 }
 
+//Crea un objeto cliente y lo agrega al arreglo clientes.
+void Clientela::creaCliente(std::string nom, std::string ubi,
+                                      int pas){
+
+  if( indCliente < MAXC ){
+    clientes[ indCliente ] = Cliente(nom, ubi, pas);
+    indCliente++ ;
+  }else{
+    std::cout<< " no es posible crear cliente";
+  }
+}
+
+
 
 // elimina el objeto cliente y recorre los demás.
 void Clientela::eliminaCliente(int indice){

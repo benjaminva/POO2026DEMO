@@ -20,6 +20,15 @@ void Flota::creaCamioneta(int id, std::string marca, std::string conductor,
     }
 }
 
+// Crea un objeto Camioneta en la flota
+void Flota::creaCamioneta(int id, std::string marca, std::string conductor,
+    std::string ubicacion, float precio, int asientos) {
+    if (numCamionetas < MAXV) {
+        camionetas[numCamionetas++] = Camioneta(id, marca, conductor,
+                                  ubicacion, precio, asientos);
+    }
+}
+
 // Crea un objeto Especial en la flota
 void Flota::creaEspecial(int id, std::string marca, std::string conductor,
    std::string ubicacion, float precio,
@@ -31,6 +40,18 @@ void Flota::creaEspecial(int id, std::string marca, std::string conductor,
                                   sillaRuedas, cajaMaterial, pesoMax);
     }
 }
+
+// Crea un objeto Especial en la flota
+void Flota::creaEspecial(int id, std::string marca, std::string conductor,
+   std::string ubicacion, float precio, int asientos, bool sillaRuedas,
+   bool cajaMaterial, float pesoMax) {
+    if (numEspeciales < MAXV) {
+        especiales[numEspeciales++] = Especial(id, marca, conductor,
+                                  ubicacion, precio, asientos,
+                                  sillaRuedas, cajaMaterial, pesoMax);
+    }
+}
+
 
 // Filtra vehículos por un atributo (ej. "marca" o "conductor") y un valor específico
 std::string Flota::filtrarVehiculo(std::string atributo, std::string valor) {
@@ -52,7 +73,17 @@ std::string Flota::filtrarVehiculo(std::string atributo, std::string valor) {
                   ss << especiales[i].toString();
           }
         }
-    } else{
+    } else if (atributo == "todos"){
+        for (int i = 0; i < numAutos; i++) {
+                ss << autos[i].toString();
+        }
+        for (int i = 0; i < numCamionetas; i++) {
+                ss << camionetas[i].toString();
+        }
+        for (int i = 0; i < numEspeciales; i++) {
+                ss << especiales[i].toString();
+        }
+    } else if (atributo == "ubicacion" || atributo == "asientos"){
 
       for (int i = 0; i < MAXV; i++) {
         if(atributo == "ubicacion"){

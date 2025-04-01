@@ -246,39 +246,6 @@ int main() {
 
     std::cout << " CalculaTarifa para auto ";
 
-    // float no se puede comparar en decimales por precision con == ,
-    // para evitar esto multiplicamos por 1000 para conservar los ultimos 3
-    // decimales y comparamos como enteros solo para las pruebas.
-    int test2 = v2.calculaTarifa() * 1000;
-    if (test2 == 12.4 * 1000) {
-        std::cout << "  éxito" << std::endl;
-    } else {
-        std::cout << "  fracaso" << std::endl;
-        std::cout << test2 << std::endl;
-    }
-
-    std::cout << " CalculaTarifa para camioneta ";
-    Vehiculo v3(2, "M", "Edu", "camioneta", "Metepec", 20.0, 6);
-
-    test2 = v3.calculaTarifa() * 1000;
-    if (test2 == 20.0 * 1.5 * 1000) {
-        std::cout << "  éxito" << std::endl;
-    } else {
-        std::cout << "  fracaso" << std::endl;
-        std::cout << test2 << std::endl;
-    }
-
-    std::cout << " CalculaTarifa para especial";
-    Vehiculo v4(2, "M", "Edu", "especial", "Metepec", 21.1, 6);
-
-    test2 = v4.calculaTarifa() * 1000;
-    if (test2 == 21.1 * 2.0 * 1000) {
-        std::cout << "  éxito" << std::endl;
-    } else {
-        std::cout << "  fracaso" << std::endl;
-        std::cout << test2 << std::endl;
-    }
-
 
     // Prueba 5: Clase Cliente.
     std::cout << std::endl << "Prueba 5 : métodos clase Cliente  " << std::endl;
@@ -319,6 +286,23 @@ int main() {
         std::cout << c2.toString() << std::endl;
     }
 
+    std::cout << " Constructor normal corto";
+    Cliente c3("Benito Pérez", "Coyoacan", 3);
+
+    ss.str("");
+    ss << " nombre : Benito Pérez" << std::endl
+     << " ubicacion : Coyoacan" << std::endl
+     << " pasajeros : 3" << std::endl
+     << " necesidad : " << std::endl
+     << " estatus : 0" << std::endl;
+
+
+    if (c3.toString() == ss.str()) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << c3.toString() << std::endl;
+    }
 
     std::cout << " Setters ";
 
@@ -376,6 +360,7 @@ int main() {
     clientela.creaCliente("hugo", "amealco", 4, "ninguna");
     clientela.creaCliente("paco", "huimilpan", 2, "silla de ruedas");
     clientela.creaCliente("luis", "periban", 1, "caja 100 kilos");
+    clientela.creaCliente("luis", "periban", 4);
 
     ss.str("");
 
@@ -394,8 +379,12 @@ int main() {
       << " ubicacion : periban" << std::endl
       << " pasajeros : 1" << std::endl
       << " necesidad : caja 100 kilos" << std::endl
+      << " estatus : 0" << std::endl
+      << " nombre : luis" << std::endl
+      << " ubicacion : periban" << std::endl
+      << " pasajeros : 4" << std::endl
+      << " necesidad : " << std::endl
       << " estatus : 0" << std::endl;
-
 
     if (clientela.toString() == ss.str()) {
         std::cout << "  éxito" << std::endl;
@@ -408,6 +397,7 @@ int main() {
     std::cout << " eliminaCliente ";
 
     clientela.eliminaCliente(1);
+    clientela.eliminaCliente(2);
 
     ss.str("");
 
@@ -551,6 +541,16 @@ int main() {
         std::cout << auto2.toString() << std::endl;
     }
 
+    std::cout << " CalculaTarifa ";
+    float test2 = auto2.calculaTarifa();
+    if (test2 > (7.4 - 0.001) && test2 < (7.4 + 0.001) ){
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << test2 << std::endl;
+    }
+
+
     // Prueba 8: Clase hija Camioneta.
     std::cout << std::endl << "Prueba 8 : métodos clase hija Camioneta"
     << std::endl;
@@ -618,6 +618,20 @@ int main() {
         std::cout << "  fracaso" << std::endl;
         std::cout << cam2.toString() << std::endl;
     }
+
+    std::cout << " CalculaTarifa ";
+
+    test2 = cam2.calculaTarifa();
+    float test3 = 20.4 * 120.1;
+    if (test2 > (test3 - 0.001) && test2 < (test3 + .001) ){
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << test2 << " " <<test3 << std::endl;
+    }
+
+
+
 
     // Prueba 9: Clase hija Especial.
     std::cout << std::endl << "Prueba 9 : métodos clase hija Especial"
@@ -731,6 +745,16 @@ int main() {
         std::cout << esp3.toString() << std::endl;
     }
 
+    std::cout << " CalculaTarifa  ";
+
+    test2 = esp3.calculaTarifa();
+    test3 = 20.4 * 120.1;
+    if (test2 > (test3 - 0.001) && test2 < (test3 + .001) ){
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << test2 << std::endl;
+    }
 
     // Prueba 10: Clase Flota.
     std::cout << std::endl << "Prueba 10 : métodos Flota"
@@ -809,7 +833,7 @@ int main() {
     flota.creaEspecial(21, "Chrisler", "Dan Brown","Sonora", 20.4, 2,
       1.8, false, true, 500);
     flota.creaEspecial(22, "Chrisler", "Humberto","Italia", 40.4, 1,
-        1.8, false, true, 400);
+      1.8, false, true, 400);
 
     ss.str("");
     ss << "tipo especial :"<< std::endl;
@@ -843,14 +867,51 @@ int main() {
         std::cout << flota.filtrarVehiculo("tipo","especial") << std::endl;
     }
 
-    std::cout << " promedio tarifas ";
 
-    if ((int)(flota.promedioTarifas()*1000) == 30533) {
+    std::cout << " crea Camioneta y crea Espacial cortos: ";
+
+    Flota f2;
+    f2.creaCamioneta(19, "Ford", "Chayan","Chiapas", 10.4, 6);
+    f2.creaEspecial(21, "Chrisler", "Dan Brown","Sonora", 20.4, 2, false, true, 500);
+
+    ss.str("");
+    ss << "todos  :"<< std::endl;
+    ss << " id : 19" << std::endl
+        << " marca : Ford" << std::endl
+        << " conductor : Chayan" << std::endl
+        << " tipo : camioneta" << std::endl
+        << " ubicacion : Chiapas" << std::endl
+        << " precio : 10.4" << std::endl
+        << " asientos : 6" << std::endl
+        << " modificador tarifa : 1.5"<< std::endl
+        << " id : 21" << std::endl
+        << " marca : Chrisler" << std::endl
+        << " conductor : Dan Brown" << std::endl
+        << " tipo : especial" << std::endl
+        << " ubicacion : Sonora" << std::endl
+        << " precio : 20.4" << std::endl
+        << " asientos : 2" << std::endl
+        << " modificador tarifa : 1.8" << std::endl
+        << " espacio para silla de ruedas : 0" << std::endl
+        << " tiene caja de carga : 1" << " capacidad kg : 500" << std::endl;
+
+    if (f2.filtrarVehiculo("todos","") == ss.str()) {
         std::cout << "  éxito" << std::endl;
     } else {
         std::cout << "  fracaso" << std::endl;
-        std::cout << (int)(flota.promedioTarifas()*1000)  << std::endl;
+        std::cout << f2.filtrarVehiculo("todos","") << std::endl;
     }
 
+    std::cout << " promedio tarifas ";
+    test3 = 10.4 * 1.5 + 20.4 * 1.8;
+    test3 = test3/2;
+    test2 = f2.promedioTarifas();
+
+    if (test2 > (test3 - 0.001) && test2 < (test3 + 0.001)) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << test2 << " " << test3 << std::endl;
+    }
 
 }

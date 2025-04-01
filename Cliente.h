@@ -35,6 +35,15 @@ public:
     Cliente(std::string nom, std::string ubi, int pas, std::string nec);
 
     /**
+     * @brief Constructor de la clase Cliente.
+     * @param nom Nombre del cliente.
+     * @param ubi Ubicación del cliente.
+     * @param pas Cantidad de pasajeros.
+     * @param nec Necesidad del cliente.
+     */
+    Cliente(std::string nom, std::string ubi, int pas);
+
+    /**
      * @brief Obtiene el nombre del cliente.
      * @return El nombre del cliente.
      */

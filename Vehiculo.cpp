@@ -78,16 +78,7 @@ void Vehiculo::setAsientos(int asi){
 
 // Calclula el costo del tipo de auto
 float Vehiculo::calculaTarifa(){
-
-  float modificador = 1;
-
-  if (tipo == "camioneta"){
-    modificador = 1.5;
-  }else if (tipo == "especial"){
-    modificador = 2.0;
-  }
-
-  return  precio * modificador;
+  return  0.0;
 }
 
 // Devuelve la información del objeto en formato string
@@ -112,6 +103,25 @@ Auto::Auto(int id, std::string marca, std::string conductor,
     std::string ubicacion, float precio, int asientos):
       Vehiculo(id, marca, conductor, "auto", ubicacion, precio, asientos) {}
 
+// Calclula el costo del tipo de auto
+float Auto::calculaTarifa(){
+  return  precio;
+}
+
+// Devuelve la información del objeto en formato string
+std::string Auto::toString(){
+  std::stringstream ss;
+  ss << " id : " << id << std::endl
+   << " marca : " << marca << std::endl
+   << " conductor : "<< conductor << std::endl
+   << " tipo : " << tipo << std::endl
+   << " ubicacion : " << ubicacion << std::endl
+   << " precio : " << precio << std::endl
+   << " asientos : " << asientos  << std::endl;
+
+   return ss.str();
+}
+
 // Constructor por defetco
 Camioneta::Camioneta():Vehiculo(), modTarifa(0){}
 
@@ -120,6 +130,12 @@ Camioneta::Camioneta(int id, std::string marca, std::string conductor,
           std::string ubicacion, float precio, int asientos, float modTarifa):
             Vehiculo(id, marca, conductor, "camioneta", ubicacion, precio, asientos),
             modTarifa(modTarifa) {}
+
+// Constructor con parámetros
+Camioneta::Camioneta(int id, std::string marca, std::string conductor,
+          std::string ubicacion, float precio, int asientos):
+            Vehiculo(id, marca, conductor, "camioneta", ubicacion, precio, asientos),
+            modTarifa(1.5) {}
 
 // Actualiza el valor del modificador de la tarifa
 void Camioneta::setModTarifa( float tar){
@@ -134,6 +150,13 @@ std::string Camioneta::toString(){
   return ss.str();
 }
 
+
+// Calclula el costo del tipo de auto
+float Camioneta::calculaTarifa(){
+  return  precio * modTarifa;
+}
+
+
 //Constructor por defetco
 Especial::Especial():Vehiculo(), modTarifa(0), sillaRuedas(false), cajaMaterial(false),
   pesoMax(0){}
@@ -147,6 +170,25 @@ Especial::Especial(int id, std::string marca, std::string conductor,
      Vehiculo(id, marca, conductor, "especial", ubicacion, precio, asientos),
      modTarifa(modTarifa), sillaRuedas(sillaRuedas), cajaMaterial(cajaMaterial),
      pesoMax(pesoMax){}
+
+//Constructor con parámetros
+Especial::Especial(int id, std::string marca, std::string conductor,
+   std::string ubicacion, float precio,
+   int asientos, bool sillaRuedas,
+   bool cajaMaterial, float pesoMax) :
+     Vehiculo(id, marca, conductor, "especial", ubicacion, precio, asientos),
+     sillaRuedas(sillaRuedas), cajaMaterial(cajaMaterial), pesoMax(pesoMax){
+
+    if (sillaRuedas == true){
+      modTarifa = 2.0;
+    }else if (cajaMaterial == true){
+      if(pesoMax == 500){
+        modTarifa = 1.8;
+      }else if(pesoMax == 1000){
+        modTarifa = 2.1;
+      }
+    }
+}
 
 //Si el vehiculo tiene espacio para silla de ruedas o no
 bool Especial::getSillaRuedas() const{
@@ -178,4 +220,9 @@ std::string Especial::toString(){
   << std::endl;
 
   return ss.str();
+}
+
+// Calclula el costo del tipo de auto
+float Especial::calculaTarifa(){
+  return  precio * modTarifa;
 }

@@ -37,6 +37,14 @@ public:
   void creaCliente(std::string nom, std::string ubi, int pas, std::string nec);
 
   /**
+   * @brief Crea un objeto cliente y lo agrega al arreglo clientes.
+   * @param nom Nombre del cliente.
+   * @param ubi Ubicación del cliente.
+   * @param pas Cantidad de pasajeros.
+   */
+  void creaCliente(std::string nom, std::string ubi, int pas);
+
+  /**
    * @brief elimina el objeto cliente y recorre los demás.
    * @param indice Posicion del objeto a a borrar del arreglo de clientes.
    */

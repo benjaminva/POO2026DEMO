@@ -14,6 +14,12 @@ Cliente::Cliente(std::string nom, std::string ubi, int pas,
                     nombre(nom), ubicacion(ubi), pasajeros(pas),
                     necesidad(nec), estatus(false) {}
 
+// Constructor con lista de inicialización
+// Inicializa los atributos de la clase Cliente con los valores proporcionados.
+Cliente::Cliente(std::string nom, std::string ubi, int pas) :
+                    nombre(nom), ubicacion(ubi), pasajeros(pas),
+                    necesidad(""), estatus(false) {}
+
 // Implementación de Getters
 
 // Devuelve el nombre del cliente.
