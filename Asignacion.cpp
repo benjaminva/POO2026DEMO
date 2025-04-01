@@ -8,7 +8,7 @@ Asignacion::Asignacion(){
 
 // @brief Asigna los vehiculos a los viajes.
 int Asignacion::asignarVehiculo(int indiceP, std::string vehiculos[MAXV],
-                        Clientela clientela) {
+                        Clientela& clientela) {
 
     std::string necesidad = clientela.consultaCliente(indiceP).getNecesidad();
     int pasajeros = clientela.consultaCliente(indiceP).getPasajeros();
@@ -19,9 +19,9 @@ int Asignacion::asignarVehiculo(int indiceP, std::string vehiculos[MAXV],
           tipoRequerido = "auto";
       }else if (necesidad == "ninguna" && pasajeros < 8) {
           tipoRequerido = "camioneta";
-      } else if (necesidad == "caja 100 kilos") {
-          tipoRequerido = "especial";
       } else if (necesidad == "caja 500 kilos") {
+          tipoRequerido = "especial";
+      } else if (necesidad == "caja 1000 kilos") {
           tipoRequerido = "especial";
       } else if (necesidad == "Silla de Ruedas") {
           tipoRequerido = "especial";
@@ -30,6 +30,7 @@ int Asignacion::asignarVehiculo(int indiceP, std::string vehiculos[MAXV],
       for (int i = 0; i < MAXV; i++) {
           if (vehiculos[i] == tipoRequerido && asignaciones[i] == -1) {
               asignaciones[i] = indiceP;
+              clientela.consultaCliente(indiceP).setEstatus(true);
               return i;
           }
       }
@@ -67,7 +68,7 @@ bool Asignacion::revisaYaAsignada(int idCliente){
 
 //@brief Muestra un reporte de las asignaciones generadas.
 std::string Asignacion::mostrarAsignaciones(std::string vehiculos[MAXV],
-                          Clientela clientela)  {
+                        Clientela& clientela)  {
 
     std::stringstream aux;
     aux << "--- Asignaciones Actuales ---" << std::endl;

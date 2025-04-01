@@ -32,7 +32,7 @@ public:
    * la petición .
    */
   int asignarVehiculo(int indiceP, std::string vehiculos[MAXV],
-                          Clientela clientela);
+                          Clientela& clientela);
 
 
   /**
@@ -75,7 +75,7 @@ public:
    *
    */
   std::string mostrarAsignaciones(std::string vehiculos[MAXV],
-                            Clientela clientela);
+                            Clientela& clientela);
 };
 
 #endif // ASIGNACION_H
