@@ -6,8 +6,12 @@ En el año 2022, en la ciudad de Ciudad de México, una startup de servicios de 
 El problema específico radica en la falta de un sistema automatizado que considere múltiples variables, como la ubicación del cliente, la disponibilidad del vehículo y el tiempo estimado de llegada. Las partes involucradas incluyen a los desarrolladores de software, el equipo de operaciones y los conductores. El equipo ha decidido utilizar un lenguaje de programación orientado a objetos para diseñar y desarrollar esta solución. Los desarrolladores deben modelar el sistema utilizando diagramas de clases en UML y asegurar que la solución sea adaptable a diferentes escenarios de demanda y oferta. 
  
 ### Usuarios
-Los usuarios del programa serán los conductores y los operadores de la compañía, es decir, tengo que tener en cuenta que el programa debe de adecuarse a los dos perfiles. 
+El program está enfocado a 3 tipos de usuarios: 
 
+1. conductores: consultar el viaje a realizar
+2. clientes: realizar una solicitud de viaje
+3. operadores de la compañía: obtener reportes sobre la asiganciones actuales, los clientes y los conductores
+   
 ### Funcionalidad
 En el programa actual se puede:
 
@@ -26,6 +30,26 @@ En el programa actual se puede:
    
 5. Generar reportes, se permiten realizar diversos reportes desde la plataforma sobre los vehículos y los clientes.
 
+### Forma de calcular costos:
+
+Los costos del tranporte se calculan con la relación tarifa especifica del transporte y la distancia.  Las tarifas dependen del tipo de transporte que se requiera para cubir las necesidades del cliente y el precio base del vehículo. Se usa la siguiente lógica para determinar los precios:
+
+
+    modificadores:
+      camioneta -> 1.5
+
+      necesidad especial  : silla de ruedas  ->   2.0
+                            cajaMaterial 500 ->   1.8
+                            cajaMaterial 1000 ->  2.1
+
+    tarifa = precio_base * modificador
+
+    costo_viaje = tarifa * distancia
+
+### Criterio de Asignación:
+
+Para asignar un vehículo primero se da prioridad a la necesidad del cliente, se filtran aquellos vehículos que cumplan con la necesidad. Posteriormente se calcula la distancia entre los vehículos válidos y el cliente, y se le asigna el más cercano (menor costo para esa necesidad), ya que está la asignación se estima el costo del viaje. Si hay empates, se atiende primero a la solicitud con misma prioridad de necesidad. 
+
 ### Diseño del prorgama (Diagrama de clases UML)
 
 En este diseño se usa asociación, herencia y composición.  
@@ -36,7 +60,7 @@ En este diseño se usa asociación, herencia y composición.
 ### Pruebas para Escenarios Diferentes 
 En el archivo pruebas.cpp se pueden ver las pruebas diseñadas para 3 escenarios extremos para la clase de Asignación:
 
- * Prueba 1.- cuando no hay clientes
+ * Prueba 1.-cuando no hay clientes
  * Prueba 2.-cuendo hay clientes
  * Prueba 3.-cuando se excede el número de clientes que se pueden asignar
 
