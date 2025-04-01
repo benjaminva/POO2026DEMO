@@ -52,9 +52,14 @@ Para asignar un vehículo primero se da prioridad a la necesidad del cliente, se
 
 ### Diseño del prorgama (Diagrama de clases UML)
 
-En este diseño se usa asociación, herencia y composición.  
+Este grupo de clases se conecta con la clase main donde se integra el programa completo.
 
 ![diagrama_clases](UML.jpeg)
+
+### Notas de la Implementación
+En el diagrama se tienen sobrecargados los métodos heredados de la clase Vehículo entodas las clases hijas.
+Las relaciones de composición tiene implementadas en las clases los métodos para crear y borrar objetos, así como los arreglos y contadores correspondientes de cada tipo de objeto.
+
 
 
 ### Pruebas para Escenarios Diferentes 
