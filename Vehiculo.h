@@ -107,13 +107,13 @@ class Vehiculo {
      * @brief Calclula el costo del tipo de auto
      * @return Costo de la tarifa
      */
-    float calculaTarifa();
+    virtual float calculaTarifa();
 
     /**
      * @brief Devuelve la información del objeto en formato string
      * @return Información del obejto en string
      */
-    std::string toString();
+    virtual std::string toString();
 
 };
 

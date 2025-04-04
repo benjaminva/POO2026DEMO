@@ -12,11 +12,28 @@
 class Asignacion {
 private:
 
-  int asignaciones[MAXV];
+  int asignaciones[MAXV]; ///< Asignaciones entre vehiculo (pos) y cliente (val)
 
 public:
 
+  /**
+  * @brief Constructor por defecto
+  */
   Asignacion();
+
+  /**
+   * @brief Devuelve un valor de distancia entre 2 ubicaciones.
+   *
+   * Mapea los strings v y c para mapearlos a ubicaciones en una matriz y
+   * obtiene la distancia registrada en la matriz de
+   *
+   * @param v Ubicación del vehiculo.
+   * @param c Ubicación del cliente.
+   *
+   * @return Entero con el valor de la distancia entre el las ubicaciones.
+   */
+
+  int calculaDistancia(std::string v, std::string c);
 
   /**
    * @brief Asigna los vehiculos a los viajes.
@@ -31,7 +48,7 @@ public:
    * @return -1 si no se pudo agregar la petición o la posición donde se asignó
    * la petición .
    */
-  int asignarVehiculo(int indiceP, std::string vehiculos[MAXV],
+  int asignarVehiculo(int indiceP, Flota& flota,
                           Clientela& clientela);
 
 
@@ -74,7 +91,7 @@ public:
    * @return string con el reporte de las asignaciones.
    *
    */
-  std::string mostrarAsignaciones(std::string vehiculos[MAXV],
+  std::string mostrarAsignaciones(Flota& flota,
                             Clientela& clientela);
 };
 

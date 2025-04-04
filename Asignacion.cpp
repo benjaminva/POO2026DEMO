@@ -1,17 +1,28 @@
 #include "Asignacion.h"
 
+// Constructor por defecto
 Asignacion::Asignacion(){
   for (int i = 0; i < MAXV; i++ ){
     asignaciones[i] = -1;
   }
 }
 
-// @brief Asigna los vehiculos a los viajes.
-int Asignacion::asignarVehiculo(int indiceP, std::string vehiculos[MAXV],
+
+// Devuelve un valor de distancia entre 2 ubicaciones
+int Asignacion::calculaDistancia(std::string v, std::string c){
+  //agregar matriz destino origen, string con string.
+  return 1;
+}
+
+
+// Asigna los vehiculos a los viajes.
+int Asignacion::asignarVehiculo(int indiceP, Flota& flota,
                         Clientela& clientela) {
 
-    std::string necesidad = clientela.consultaCliente(indiceP).getNecesidad();
-    int pasajeros = clientela.consultaCliente(indiceP).getPasajeros();
+    Cliente clien = clientela.consultaCliente(indiceP);
+    std::string necesidad = clien.getNecesidad();
+    std::string ubicacion = clien.getUbicacion();
+    int pasajeros = clien.getPasajeros();
 
     std::string tipoRequerido = "";
     if (necesidad != ""){
@@ -23,16 +34,45 @@ int Asignacion::asignarVehiculo(int indiceP, std::string vehiculos[MAXV],
           tipoRequerido = "especial";
       } else if (necesidad == "caja 1000 kilos") {
           tipoRequerido = "especial";
-      } else if (necesidad == "Silla de Ruedas") {
+      } else if (necesidad == "silla de ruedas") {
           tipoRequerido = "especial";
+      } else {
+          return -1;
       }
 
-      for (int i = 0; i < MAXV; i++) {
-          if (vehiculos[i] == tipoRequerido && asignaciones[i] == -1) {
-              asignaciones[i] = indiceP;
-              clientela.consultaCliente(indiceP).setEstatus(true);
-              return i;
+      int pos = -1;
+      int menor = 1000;
+      int distancia;
+      for (int i = 0; i < flota.getIdVehiculo(); i++) {
+          distancia = 1000;
+          Vehiculo *temp = flota.obtenVehiculo(i);
+          if (temp->getTipo() == tipoRequerido && asignaciones[i] == -1) {
+            if(temp->getTipo() == "especial"){
+                Especial *esp = (Especial* )temp;
+                if(necesidad == "silla de ruedas" &&
+                            esp->getSillaRuedas()){
+                    distancia = calculaDistancia(esp->getUbicacion(), ubicacion);
+                } else if (necesidad == "caja 500 kilos" &&
+                            esp->getPesoMax() == 500){
+                    distancia = calculaDistancia(esp->getUbicacion(), ubicacion);
+                } else if (necesidad == "caja 1000 kilos" ||
+                            necesidad == "caja 500 kilos" &&
+                            esp->getPesoMax() == 1000){
+                    distancia = calculaDistancia(esp->getUbicacion(), ubicacion);
+                }
+            }else {
+              distancia = calculaDistancia(temp->getUbicacion(), ubicacion);
+            }
+            if (distancia < menor ){
+                menor = distancia;
+                pos = i;
+            }
           }
+      }
+      if (pos != -1){
+        asignaciones[pos] = indiceP;
+        clientela.modificaCliente(indiceP,"estatus","true");
+        return pos;
       }
     }
     return -1;
@@ -67,16 +107,18 @@ bool Asignacion::revisaYaAsignada(int idCliente){
 }
 
 //@brief Muestra un reporte de las asignaciones generadas.
-std::string Asignacion::mostrarAsignaciones(std::string vehiculos[MAXV],
+std::string Asignacion::mostrarAsignaciones(Flota& flota,
                         Clientela& clientela)  {
 
     std::stringstream aux;
     aux << "--- Asignaciones Actuales ---" << std::endl;
-    for (int i = 0; i < MAXV; i++) {
+    for (int i = 0; i < flota.getIdVehiculo(); i++) {
         if (asignaciones[i] != -1) {
+            aux << " (asignacion : " << i << " )" << std::endl;
             int indice = asignaciones[i];
-            aux << "Vehículo " << vehiculos[i]
-                 << " (ID: " << i << ") "  << " asignado a:" << std::endl
+            Vehiculo* temp = flota.obtenVehiculo(i);
+            aux << " Vehículo : " << temp->toString()
+
                  << clientela.consultaCliente(indice).toString() << std::endl;
         }
     }

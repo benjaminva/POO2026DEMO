@@ -2,54 +2,104 @@
 #include <string>
 #include <sstream>
 
+
+// Redimensiona el arreglo de empleados cuando se alcanza la capacidad.
+void Flota::redimensionaArreglo() {
+    int nuevaCapacidad = capacidad * 2;
+    Vehiculo** nuevoArreglo = new Vehiculo*[nuevaCapacidad];
+
+    for(int i = 0; i < idVehiculo; i++) {
+        nuevoArreglo[i] = vehiculos[i];
+    }
+
+    delete[] vehiculos;
+    vehiculos = nuevoArreglo;
+    capacidad = nuevaCapacidad;
+}
+
+// constructor por defecto
+Flota::Flota(): capacidad(100), idVehiculo(0){
+  vehiculos = new Vehiculo*[capacidad];
+}
+
 // Crea un objeto Auto en la flota
-void Flota::creaAuto(int id, std::string marca, std::string conductor,
+void Flota::creaAuto(std::string marca, std::string conductor,
     std::string ubicacion, float precio, int asientos) {
-    if (numAutos < MAXV) {
-        autos[numAutos++] = Auto(id, marca, conductor,
+    if(idVehiculo >= capacidad){
+      redimensionaArreglo();
+    }
+    if (idVehiculo < capacidad) {
+        vehiculos[idVehiculo] = new Auto(idVehiculo, marca, conductor,
                                   ubicacion, precio, asientos);
+        idVehiculo++ ;
     }
 }
 
 // Crea un objeto Camioneta en la flota
-void Flota::creaCamioneta(int id, std::string marca, std::string conductor,
+void Flota::creaCamioneta(std::string marca, std::string conductor,
     std::string ubicacion, float precio, int asientos, float modTarifa) {
-    if (numCamionetas < MAXV) {
-        camionetas[numCamionetas++] = Camioneta(id, marca, conductor,
+      if(idVehiculo >= capacidad){
+        redimensionaArreglo();
+      }
+      if (idVehiculo < capacidad) {
+          vehiculos[idVehiculo] = new Camioneta(idVehiculo, marca, conductor,
                                   ubicacion, precio, asientos, modTarifa);
+          idVehiculo++;
     }
 }
 
 // Crea un objeto Camioneta en la flota
-void Flota::creaCamioneta(int id, std::string marca, std::string conductor,
+void Flota::creaCamioneta(std::string marca, std::string conductor,
     std::string ubicacion, float precio, int asientos) {
-    if (numCamionetas < MAXV) {
-        camionetas[numCamionetas++] = Camioneta(id, marca, conductor,
+    if(idVehiculo >= capacidad){
+      redimensionaArreglo();
+    }
+    if (idVehiculo < capacidad) {
+          vehiculos[idVehiculo] = new  Camioneta(idVehiculo, marca, conductor,
                                   ubicacion, precio, asientos);
+          idVehiculo++;
     }
 }
 
 // Crea un objeto Especial en la flota
-void Flota::creaEspecial(int id, std::string marca, std::string conductor,
+void Flota::creaEspecial(std::string marca, std::string conductor,
    std::string ubicacion, float precio,
    int asientos, float modTarifa,  bool sillaRuedas,
    bool cajaMaterial, float pesoMax) {
-    if (numEspeciales < MAXV) {
-        especiales[numEspeciales++] = Especial(id, marca, conductor,
+   if(idVehiculo >= capacidad){
+       redimensionaArreglo();
+    }
+    if (idVehiculo < capacidad) {
+         vehiculos[idVehiculo] = new  Especial(idVehiculo, marca, conductor,
                                   ubicacion, precio, asientos, modTarifa,
                                   sillaRuedas, cajaMaterial, pesoMax);
+        idVehiculo++;
     }
 }
 
 // Crea un objeto Especial en la flota
-void Flota::creaEspecial(int id, std::string marca, std::string conductor,
+void Flota::creaEspecial(std::string marca, std::string conductor,
    std::string ubicacion, float precio, int asientos, bool sillaRuedas,
    bool cajaMaterial, float pesoMax) {
-    if (numEspeciales < MAXV) {
-        especiales[numEspeciales++] = Especial(id, marca, conductor,
+   if(idVehiculo >= capacidad){
+       redimensionaArreglo();
+   }
+   if (idVehiculo < capacidad) {
+        vehiculos[idVehiculo] = new  Especial(idVehiculo, marca, conductor,
                                   ubicacion, precio, asientos,
                                   sillaRuedas, cajaMaterial, pesoMax);
+        idVehiculo++;
     }
+}
+
+// Devuelve el numero de vehiculos registrados en el arreglo vehiculos
+int Flota::getIdVehiculo() const{
+  return idVehiculo;
+}
+
+// Devuelve el apuntador al objeto vehículo en la posición i
+Vehiculo* Flota::obtenVehiculo(int id){
+    return vehiculos[id];
 }
 
 
@@ -60,54 +110,27 @@ std::string Flota::filtrarVehiculo(std::string atributo, std::string valor) {
     ss << atributo << " " << valor << " :"<< std::endl;
 
     if (atributo == "tipo") {
-        if (valor == "auto"){
-          for (int i = 0; i < numAutos; i++) {
-                  ss << autos[i].toString();
-          }
-        }else if (valor == "camioneta"){
-          for (int i = 0; i < numCamionetas; i++) {
-                  ss << camionetas[i].toString();
-          }
-        } else if (valor == "especial"){
-          for (int i = 0; i < numEspeciales; i++) {
-                  ss << especiales[i].toString();
-          }
-        }
-    } else if (atributo == "todos"){
-        for (int i = 0; i < numAutos; i++) {
-                ss << autos[i].toString();
-        }
-        for (int i = 0; i < numCamionetas; i++) {
-                ss << camionetas[i].toString();
-        }
-        for (int i = 0; i < numEspeciales; i++) {
-                ss << especiales[i].toString();
-        }
-    } else if (atributo == "ubicacion" || atributo == "asientos"){
-
-      for (int i = 0; i < MAXV; i++) {
-        if(atributo == "ubicacion"){
-          if( i < numAutos && autos[i].getUbicacion() == valor){
-              ss << autos[i].toString();
-          }
-          if( i < numCamionetas && camionetas[i].getUbicacion() == valor){
-              ss << camionetas[i].toString();
-          }
-          if( i < numEspeciales && especiales[i].getUbicacion() == valor){
-              ss << especiales[i].toString();
-          }
-        }else if(atributo == "asientos"){
-          if( i < numAutos && autos[i].getAsientos() == std::stoi(valor)){
-              ss << autos[i].toString();
-          }
-          if( i < numCamionetas && camionetas[i].getAsientos() == std::stoi(valor)){
-              ss << camionetas[i].toString();
-          }
-          if( i < numEspeciales && especiales[i].getAsientos() == std::stoi(valor)){
-              ss << especiales[i].toString();
-          }
+      for (int i = 0; i < idVehiculo; i++) {
+        if (vehiculos[i]->getTipo() == valor){
+           ss << vehiculos[i]->toString();
         }
       }
+    } else if (atributo == "ubicacion") {
+      for (int i = 0; i < idVehiculo; i++) {
+        if (vehiculos[i]->getUbicacion() == valor){
+           ss << vehiculos[i]->toString();
+        }
+      }
+    } else if (atributo == "asientos") {
+      for (int i = 0; i < idVehiculo; i++) {
+        if (vehiculos[i]->getAsientos() == stoi(valor)){
+           ss << vehiculos[i]->toString();
+        }
+      }
+    } else if (atributo == "todos"){
+        for (int i = 0; i < idVehiculo; i++) {
+           ss << vehiculos[i]->toString();
+        }
     }
     return ss.str();
 }
@@ -117,19 +140,10 @@ std::string Flota::filtrarVehiculo(std::string atributo, std::string valor) {
 float Flota::promedioTarifas() {
     float total = 0.0;
     int count = 0;
-    for (int i = 0; i < numAutos; i++) {
-        total += autos[i].calculaTarifa();
+    for (int i = 0; i < idVehiculo; i++) {
+        total += vehiculos[i]->calculaTarifa();
         count++;
     }
-    for (int i = 0; i < numCamionetas; i++) {
-        total += camionetas[i].calculaTarifa();
-        count++;
-    }
-    for (int i = 0; i < numEspeciales; i++) {
-        total += especiales[i].calculaTarifa();
-        count++;
-    }
-
     if (count == 0) {
       return 0.0;
     }

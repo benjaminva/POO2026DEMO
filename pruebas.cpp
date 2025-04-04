@@ -30,148 +30,24 @@
  */
 int main() {
     std::cout << "Reporte de pruebas por clases:" << std::endl;
-    std::cout << "Prueba 1 : Clase Asignacion" << std::endl;
-    std::cout << "Prueba 2 : Clase Asignacion" << std::endl;
-    std::cout << "Prueba 3 : Clase Asignacion" << std::endl;
-    std::cout << "Prueba 4 : Clase Vehiculo" << std::endl;
-    std::cout << "Prueba 5 : Clase Cliente" << std::endl;
-    std::cout << "Prueba 6 : Clase Clientela" << std::endl;
-    std::cout << "Prueba 7 : Clase hija Auto" << std::endl;
-    std::cout << "Prueba 8 : Clase hija Camionte" << std::endl;
-    std::cout << "Prueba 9 : Clase hija Especial" << std::endl;
-    std::cout << "Prueba 10 : Clase Flota" << std::endl;
+    std::cout << "Prueba 1 : Clase Vehiculo" << std::endl;
+    std::cout << "Prueba 2 : Clase Cliente" << std::endl;
+    std::cout << "Prueba 3 : Clase Clientela" << std::endl;
+    std::cout << "Prueba 4 : Clase hija Auto" << std::endl;
+    std::cout << "Prueba 5 : Clase hija Camionte" << std::endl;
+    std::cout << "Prueba 6 : Clase hija Especial" << std::endl;
+    std::cout << "Prueba 7 : Clase Flota" << std::endl;
+    std::cout << "Prueba 8 : Clase Asignacion" << std::endl;
+    std::cout << "Prueba 9 : Clase Asignacion" << std::endl;
+    std::cout << "Prueba 10 : Clase Asignacion" << std::endl;
 
-    std::cout << "\nPrueba 1: Cuando los arreglos están vacíos" << std::endl;
-
-    Asignacion a;
-    Clientela clientelaAsig;
-    std::string vehiculos[MAXV] = {"auto", "camioneta", "especial", "auto"};
-    int numClientes = 0;
-
-    // Prueba: No se puede asignar un vehículo cuando no hay clientes.
-    std::cout << " Asignar vehículo";
-    int test = a.asignarVehiculo(0, vehiculos, clientelaAsig);
-    if (test == -1) {
-        std::cout << "  éxito" << std::endl;
-    } else {
-        std::cout << "  fracaso" << std::endl;
-        std::cout << test << std::endl;
-    }
-
-    // Prueba: Verificar que una asignación no existe en un arreglo vacío.
-    std::cout << " Verificar si ya está asignado";
-    if (!a.revisaYaAsignada(0)) {
-        std::cout << "  éxito" << std::endl;
-    } else {
-        std::cout << "  fracaso" << std::endl;
-        std::cout << !a.revisaYaAsignada(0) << std::endl;
-    }
-
-    // Prueba: Mostrar asignaciones en un sistema sin clientes ni asignaciones.
-    std::cout << " Mostrar asignaciones";
-    std::stringstream ss;
-    ss << "--- Asignaciones Actuales ---\n-----------------------------\n";
-    if (ss.str() == a.mostrarAsignaciones(vehiculos, clientelaAsig)) {
-        std::cout << "  éxito" << std::endl;
-    } else {
-        std::cout << "  fracaso" << std::endl;
-        std::cout << a.mostrarAsignaciones(vehiculos, clientelaAsig) << std::endl;
-    }
-
-    // Prueba 2: Caso normal con asignaciones posibles e imposibles.
-    std::cout << "\nPrueba 2: Caso normal" << std::endl;
-    numClientes = 5;
-
-    for (int i = 0; i < numClientes; i++) {
-        std::string testStr = "test " + std::to_string(i);
-        clientelaAsig.creaCliente(testStr, "", 1, "ninguna");
-    }
-
-    std::cout << " Asignar vehículos cuando es posible" << std::endl;
-    for (int i = 0; i < 2; i++) {
-        if (a.asignarVehiculo(i, vehiculos, clientelaAsig) != -1) {
-            std::cout << "  éxito" << std::endl;
-        } else {
-            std::cout << "  fracaso" << std::endl;
-        }
-    }
-
-    std::cout << " Asignar vehículos cuando no es posible" << std::endl;
-    for (int i = 2; i < 5; i++) {
-        if (a.asignarVehiculo(i, vehiculos, clientelaAsig) == -1) {
-            std::cout << "  éxito" << std::endl;
-        } else {
-            std::cout << "  fracaso" << std::endl;
-        }
-    }
-
-    std::cout << " Verificar asignaciones cuando sí están asignadas" << std::endl;
-    for (int i = 0; i < 2; i++) {
-        if (a.revisaYaAsignada(i)) {
-            std::cout << "  éxito" << std::endl;
-        } else {
-            std::cout << "  fracaso" << std::endl;
-        }
-    }
-
-    std::cout << " Verificar asignaciones cuando no están asignadas" << std::endl;
-    for (int i = 2; i < 5; i++) {
-        if (!a.revisaYaAsignada(i)) {
-            std::cout << "  éxito" << std::endl;
-        } else {
-            std::cout << "  fracaso" << std::endl;
-        }
-    }
-
-    std::cout << " Mostrar asignaciones con clientes asignados" << std::endl;
-    ss.str(""); // borra el contenido del stream
-    ss << "--- Asignaciones Actuales ---" << std::endl
-      << "Vehículo auto (ID: 0)  asignado a:" << std::endl
-      << " nombre : test 0" << std::endl
-      << " ubicacion : " << std::endl
-      << " pasajeros : 1" << std::endl
-      << " necesidad : ninguna" << std::endl
-      << " estatus : 0" << std::endl << std::endl
-      << "Vehículo auto (ID: 3)  asignado a:" << std::endl
-      << " nombre : test 1" << std::endl
-      << " ubicacion : " << std::endl
-      << " pasajeros : 1" << std::endl
-      << " necesidad : ninguna" << std::endl
-      << " estatus : 0" << std::endl << std::endl
-      << "-----------------------------" << std::endl;
-
-    if (ss.str() == a.mostrarAsignaciones(vehiculos, clientelaAsig)) {
-        std::cout << "  éxito" << std::endl;
-    } else {
-        std::cout << "  fracaso" << std::endl;
-        std::cout << a.mostrarAsignaciones(vehiculos, clientelaAsig) << std::endl;
-    }
-
-    // Prueba 3: Cuando se excede el tamaño de los arreglos.
-    std::cout << "\nPrueba 3: Cuando se excede el tamaño máximo permitido "
-              << " de los arreglos " << std::endl;
-
-    std::cout << " Asignar vehículo fuera del rango" << std::endl;
-    if (a.asignarVehiculo(5, vehiculos, clientelaAsig) == -1) {
-        std::cout << "  éxito" << std::endl;
-    } else {
-        std::cout << "  fracaso" << std::endl;
-    }
-
-    std::cout << " Verificar asignación fuera del rango" << std::endl;
-    if (!a.revisaYaAsignada(5)) {
-        std::cout << "  éxito" << std::endl;
-    } else {
-        std::cout << "  fracaso" << std::endl;
-    }
 
     // Prueba 4: Clase Vehiculo.
-    std::cout << std::endl << "Prueba 4 : métodos clase Vehiculo  " << std::endl;
+    std::cout << std::endl << "Prueba 1 : métodos clase Vehiculo  " << std::endl;
     std::cout << " Constructor por defecto ";
 
     Vehiculo v1;
-
-    ss.str("");
+    std::stringstream ss;
     ss << " id : 0" << std::endl
        << " marca : " << std::endl
        << " conductor : " << std::endl
@@ -248,7 +124,7 @@ int main() {
 
 
     // Prueba 5: Clase Cliente.
-    std::cout << std::endl << "Prueba 5 : métodos clase Cliente  " << std::endl;
+    std::cout << std::endl << "Prueba 2 : métodos clase Cliente  " << std::endl;
     std::cout << " Constructor por defecto ";
 
     Cliente c1;
@@ -337,9 +213,7 @@ int main() {
         std::cout << ss.str() << std::endl;
     }
 
-
-    // Prueba 6: Clase Clientela.
-    std::cout << std::endl << "Prueba 6 : métodos clase Clientela  " << std::endl;
+    std::cout << std::endl << "Prueba 3 : métodos clase Clientela  " << std::endl;
     std::cout << " Constructor por defecto ";
 
     Clientela clientela;
@@ -499,8 +373,7 @@ int main() {
         std::cout << cb.toString() << std::endl;
     }
 
-    // Prueba 7: Clase hija Auto.
-    std::cout << std::endl << "Prueba 7 : métodos clase hija Auto" << std::endl;
+    std::cout << std::endl << "Prueba 4 : métodos clase hija Auto" << std::endl;
     std::cout << " Constructor por defecto ";
 
     Auto auto1;
@@ -550,9 +423,7 @@ int main() {
         std::cout << test2 << std::endl;
     }
 
-
-    // Prueba 8: Clase hija Camioneta.
-    std::cout << std::endl << "Prueba 8 : métodos clase hija Camioneta"
+    std::cout << std::endl << "Prueba 5 : métodos clase hija Camioneta"
     << std::endl;
     std::cout << " Constructor por defecto ";
 
@@ -631,10 +502,7 @@ int main() {
     }
 
 
-
-
-    // Prueba 9: Clase hija Especial.
-    std::cout << std::endl << "Prueba 9 : métodos clase hija Especial"
+    std::cout << std::endl << "Prueba 6 : métodos clase hija Especial"
     << std::endl;
     std::cout << " Constructor por defecto ";
 
@@ -756,21 +624,20 @@ int main() {
         std::cout << test2 << std::endl;
     }
 
-    // Prueba 10: Clase Flota.
-    std::cout << std::endl << "Prueba 10 : métodos Flota"
+    std::cout << std::endl << "Prueba 7 : métodos Flota"
     << std::endl;
 
     Flota flota;
 
     std::cout << " crea Auto ";
 
-    flota.creaAuto(10, "Mazda", "Mijares","Acapulco", 7.4, 4);
-    flota.creaAuto(11, "Mazda", "Juan Gabriel","Michoacan", 8.0, 4);
+    flota.creaAuto("Mazda", "Mijares","Acapulco", 7.4, 4);
+    flota.creaAuto("Mazda", "Juan Gabriel","Michoacan", 8.0, 4);
 
 
     ss.str("");
     ss << "tipo auto :"<< std::endl;
-    ss << " id : 10" << std::endl
+    ss << " id : 0" << std::endl
        << " marca : Mazda" << std::endl
        << " conductor : Mijares" << std::endl
        << " tipo : auto" << std::endl
@@ -778,7 +645,7 @@ int main() {
        << " precio : 7.4" << std::endl
        << " asientos : 4" << std::endl;
 
-    ss << " id : 11" << std::endl
+    ss << " id : 1" << std::endl
        << " marca : Mazda" << std::endl
        << " conductor : Juan Gabriel" << std::endl
        << " tipo : auto" << std::endl
@@ -797,12 +664,12 @@ int main() {
     std::cout << " crea Camioneta ";
 
 
-    flota.creaCamioneta(18, "Ford", "Luis Mirey","Edo de Mexico", 20.4, 7, 1.8);
-    flota.creaCamioneta(19, "Ford", "Chayan","Chiapas", 10.4, 6, 2.8);
+    flota.creaCamioneta("Ford", "Luis Mirey","Edo de Mexico", 20.4, 7, 1.8);
+    flota.creaCamioneta("Ford", "Chayan","Chiapas", 10.4, 6, 2.8);
 
     ss.str("");
     ss << "tipo camioneta :"<< std::endl;
-    ss << " id : 18" << std::endl
+    ss << " id : 2" << std::endl
        << " marca : Ford" << std::endl
        << " conductor : Luis Mirey" << std::endl
        << " tipo : camioneta" << std::endl
@@ -811,7 +678,7 @@ int main() {
        << " asientos : 7" << std::endl
        << " modificador tarifa : 1.8"<< std::endl;
 
-    ss << " id : 19" << std::endl
+    ss << " id : 3" << std::endl
         << " marca : Ford" << std::endl
         << " conductor : Chayan" << std::endl
         << " tipo : camioneta" << std::endl
@@ -830,14 +697,16 @@ int main() {
     std::cout << " crea especial ";
 
 
-    flota.creaEspecial(21, "Chrisler", "Dan Brown","Sonora", 20.4, 2,
+    flota.creaEspecial("Chrisler", "Dan Brown","Sonora", 20.4, 2,
       1.8, false, true, 500);
-    flota.creaEspecial(22, "Chrisler", "Humberto","Italia", 40.4, 1,
-      1.8, false, true, 400);
+    flota.creaEspecial("Chrisler", "Humberto","Italia", 40.4, 1,
+      1.8, false, true, 1000);
+    flota.creaEspecial("Chrisler", "Jacopo","Italia", 40.4, 4,
+      1.8, true, false, 0);
 
     ss.str("");
     ss << "tipo especial :"<< std::endl;
-    ss << " id : 21" << std::endl
+    ss << " id : 4" << std::endl
        << " marca : Chrisler" << std::endl
        << " conductor : Dan Brown" << std::endl
        << " tipo : especial" << std::endl
@@ -848,7 +717,7 @@ int main() {
        << " espacio para silla de ruedas : 0" << std::endl
        << " tiene caja de carga : 1" << " capacidad kg : 500" << std::endl;
 
-   ss << " id : 22" << std::endl
+   ss << " id : 5" << std::endl
       << " marca : Chrisler" << std::endl
       << " conductor : Humberto" << std::endl
       << " tipo : especial" << std::endl
@@ -857,8 +726,18 @@ int main() {
       << " asientos : 1" << std::endl
       << " modificador tarifa : 1.8" << std::endl
       << " espacio para silla de ruedas : 0" << std::endl
-      << " tiene caja de carga : 1" << " capacidad kg : 400" << std::endl;
+      << " tiene caja de carga : 1" << " capacidad kg : 1000" << std::endl;
 
+   ss << " id : 6" << std::endl
+      << " marca : Chrisler" << std::endl
+      << " conductor : Jacopo" << std::endl
+      << " tipo : especial" << std::endl
+      << " ubicacion : Italia" << std::endl
+      << " precio : 40.4" << std::endl
+      << " asientos : 4" << std::endl
+      << " modificador tarifa : 1.8" << std::endl
+      << " espacio para silla de ruedas : 1" << std::endl
+      << " tiene caja de carga : 0" << " capacidad kg : 0" << std::endl;
 
     if (flota.filtrarVehiculo("tipo","especial") == ss.str()) {
         std::cout << "  éxito" << std::endl;
@@ -871,12 +750,12 @@ int main() {
     std::cout << " crea Camioneta y crea Espacial cortos: ";
 
     Flota f2;
-    f2.creaCamioneta(19, "Ford", "Chayan","Chiapas", 10.4, 6);
-    f2.creaEspecial(21, "Chrisler", "Dan Brown","Sonora", 20.4, 2, false, true, 500);
+    f2.creaCamioneta("Ford", "Chayan","Chiapas", 10.4, 6);
+    f2.creaEspecial("Chrisler", "Dan Brown","Sonora", 20.4, 2, false, true, 500);
 
     ss.str("");
     ss << "todos  :"<< std::endl;
-    ss << " id : 19" << std::endl
+    ss << " id : 0" << std::endl
         << " marca : Ford" << std::endl
         << " conductor : Chayan" << std::endl
         << " tipo : camioneta" << std::endl
@@ -884,7 +763,7 @@ int main() {
         << " precio : 10.4" << std::endl
         << " asientos : 6" << std::endl
         << " modificador tarifa : 1.5"<< std::endl
-        << " id : 21" << std::endl
+        << " id : 1" << std::endl
         << " marca : Chrisler" << std::endl
         << " conductor : Dan Brown" << std::endl
         << " tipo : especial" << std::endl
@@ -912,6 +791,256 @@ int main() {
     } else {
         std::cout << "  fracaso" << std::endl;
         std::cout << test2 << " " << test3 << std::endl;
+    }
+
+
+
+    std::cout << "\nPrueba 8: integración en asignación cuando no hay clientes" << std::endl;
+
+    Asignacion a;
+    Clientela clientelaAsig;
+    int numClientes = 0;
+
+    std::cout << " Asignar vehículo";
+    int test = a.asignarVehiculo(0, flota, clientelaAsig);
+    if (test == -1) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << test << std::endl;
+    }
+
+    std::cout << " Verificar si ya está asignado";
+    if (!a.revisaYaAsignada(0)) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << !a.revisaYaAsignada(0) << std::endl;
+    }
+
+    std::cout << " Mostrar asignaciones";
+    ss.str("");
+    ss << "--- Asignaciones Actuales ---\n-----------------------------\n";
+    if (ss.str() == a.mostrarAsignaciones(flota, clientelaAsig)) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << a.mostrarAsignaciones(flota, clientelaAsig) << ss.str() << std::endl;
+    }
+
+    std::cout << "\nPrueba 9:integración en asignación cuando hay clientes" << std::endl;
+    numClientes = 2;
+
+    for (int i = 0; i < numClientes; i++) {
+        std::string testStr = "test " + std::to_string(i);
+        clientelaAsig.creaCliente(testStr, "Acapulco", 2, "ninguna");
+    }
+    for (int i = 0; i < numClientes; i++) {
+        std::string testStr = "test " + std::to_string(i+numClientes);
+        clientelaAsig.creaCliente(testStr, "Chiapas", 6, "ninguna");
+    }
+    for (int i = 0; i < numClientes; i++) {
+        std::string testStr = "test " + std::to_string(i+numClientes*2);
+        clientelaAsig.creaCliente(testStr, "Michoacan", 3, "silla de ruedas");
+    }
+    for (int i = 0; i < numClientes; i++) {
+        std::string testStr = "test " + std::to_string(i+numClientes*3);
+        clientelaAsig.creaCliente(testStr, "Queretaro", 4, "caja 500 kilos");
+    }
+
+    std::cout << " Asignar vehículos cuando es posible" << std::endl;
+    for (int i = 0; i < 5; i++) {
+        if (a.asignarVehiculo(i, flota, clientelaAsig) != -1) {
+            std::cout << "  éxito" << std::endl;
+        } else {
+            std::cout << "  fracaso" << std::endl;
+        }
+    }
+    for (int i = 6; i < 8; i++) {
+        if (a.asignarVehiculo(i, flota, clientelaAsig) != -1) {
+            std::cout << "  éxito" << std::endl;
+        } else {
+            std::cout << "  fracaso" << std::endl;
+        }
+    }
+
+    std::cout << " Asignar vehículos cuando no es posible" << std::endl;
+    if (a.asignarVehiculo(5, flota, clientelaAsig) == -1) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+    }
+
+    for (int i = 8; i < 10; i++) {
+        if (a.asignarVehiculo(i, flota, clientelaAsig) == -1) {
+            std::cout << "  éxito" << std::endl;
+        } else {
+            std::cout << "  fracaso" << std::endl;
+        }
+    }
+
+    std::cout << " Verificar asignaciones cuando sí están asignadas" << std::endl;
+    for (int i = 0; i < 5; i++) {
+        if (a.revisaYaAsignada(i)) {
+            std::cout << "  éxito" << std::endl;
+        } else {
+            std::cout << "  fracaso" << std::endl;
+        }
+    }
+    for (int i = 6; i < 8; i++) {
+        if (a.revisaYaAsignada(i)) {
+            std::cout << "  éxito" << std::endl;
+        } else {
+            std::cout << "  fracaso" << std::endl;
+        }
+    }
+
+
+    std::cout << " Verificar asignaciones cuando no están asignadas" << std::endl;
+    if (!a.revisaYaAsignada(5)) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+    }
+    for (int i = 8; i < 10; i++) {
+        if (!a.revisaYaAsignada(i)) {
+            std::cout << "  éxito" << std::endl;
+        } else {
+            std::cout << "  fracaso" << std::endl;
+        }
+    }
+
+    std::cout << " Mostrar asignaciones con clientes asignados" << std::endl;
+    ss.str(""); // borra el contenido del stream
+    ss << "--- Asignaciones Actuales ---" << std::endl
+      << " (asignacion : 0 )" << std::endl
+      << " Vehículo :  id : 0" << std::endl
+      << " marca : Mazda" << std::endl
+      << " conductor : Mijares" << std::endl
+      << " tipo : auto" << std::endl
+      << " ubicacion : Acapulco" << std::endl
+      << " precio : 7.4" << std::endl
+      << " asientos : 4" << std::endl
+      << " nombre : test 0" << std::endl
+      << " ubicacion : Acapulco" << std::endl
+      << " pasajeros : 2" << std::endl
+      << " necesidad : ninguna" << std::endl
+      << " estatus : 1" << std::endl<< std::endl
+      << " (asignacion : 1 )" << std::endl
+      << " Vehículo :  id : 1" << std::endl
+      << " marca : Mazda" << std::endl
+      << " conductor : Juan Gabriel" << std::endl
+      << " tipo : auto" << std::endl
+      << " ubicacion : Michoacan" << std::endl
+      << " precio : 8" << std::endl
+      << " asientos : 4" << std::endl
+      << " nombre : test 1" << std::endl
+      << " ubicacion : Acapulco" << std::endl
+      << " pasajeros : 2" << std::endl
+      << " necesidad : ninguna" << std::endl
+      << " estatus : 1" << std::endl<< std::endl
+      << " (asignacion : 2 )" << std::endl
+      << " Vehículo :  id : 2" << std::endl
+      << " marca : Ford" << std::endl
+      << " conductor : Luis Mirey" << std::endl
+      << " tipo : camioneta" << std::endl
+      << " ubicacion : Edo de Mexico" << std::endl
+      << " precio : 20.4" << std::endl
+      << " asientos : 7" << std::endl
+      << " modificador tarifa : 1.8" << std::endl
+      << " nombre : test 2" << std::endl
+      << " ubicacion : Chiapas" << std::endl
+      << " pasajeros : 6" << std::endl
+      << " necesidad : ninguna" << std::endl
+      << " estatus : 1" << std::endl<< std::endl
+      << " (asignacion : 3 )" << std::endl
+      << " Vehículo :  id : 3" << std::endl
+      << " marca : Ford" << std::endl
+      << " conductor : Chayan" << std::endl
+      << " tipo : camioneta" << std::endl
+      << " ubicacion : Chiapas" << std::endl
+      << " precio : 10.4" << std::endl
+      << " asientos : 6" << std::endl
+      << " modificador tarifa : 2.8" << std::endl
+      << " nombre : test 3" << std::endl
+      << " ubicacion : Chiapas" << std::endl
+      << " pasajeros : 6" << std::endl
+      << " necesidad : ninguna" << std::endl
+      << " estatus : 1" << std::endl<< std::endl
+      << " (asignacion : 4 )" << std::endl
+      << " Vehículo :  id : 4" << std::endl
+      << " marca : Chrisler" << std::endl
+      << " conductor : Dan Brown" << std::endl
+      << " tipo : especial" << std::endl
+      << " ubicacion : Sonora" << std::endl
+      << " precio : 20.4" << std::endl
+      << " asientos : 2" << std::endl
+      << " modificador tarifa : 1.8" << std::endl
+      << " espacio para silla de ruedas : 0" << std::endl
+      << " tiene caja de carga : 1 capacidad kg : 500" << std::endl
+      << " nombre : test 6" << std::endl
+      << " ubicacion : Queretaro" << std::endl
+      << " pasajeros : 4" << std::endl
+      << " necesidad : caja 500 kilos" << std::endl
+      << " estatus : 1" << std::endl<< std::endl
+      << " (asignacion : 5 )" << std::endl
+      << " Vehículo :  id : 5" << std::endl
+      << " marca : Chrisler" << std::endl
+      << " conductor : Humberto" << std::endl
+      << " tipo : especial" << std::endl
+      << " ubicacion : Italia" << std::endl
+      << " precio : 40.4" << std::endl
+      << " asientos : 1" << std::endl
+      << " modificador tarifa : 1.8" << std::endl
+      << " espacio para silla de ruedas : 0" << std::endl
+      << " tiene caja de carga : 1 capacidad kg : 1000" << std::endl
+      << " nombre : test 7" << std::endl
+      << " ubicacion : Queretaro" << std::endl
+      << " pasajeros : 4" << std::endl
+      << " necesidad : caja 500 kilos" << std::endl
+      << " estatus : 1" << std::endl<< std::endl
+      << " (asignacion : 6 )" << std::endl
+      << " Vehículo :  id : 6" << std::endl
+      << " marca : Chrisler" << std::endl
+      << " conductor : Jacopo" << std::endl
+      << " tipo : especial" << std::endl
+      << " ubicacion : Italia" << std::endl
+      << " precio : 40.4" << std::endl
+      << " asientos : 4" << std::endl
+      << " modificador tarifa : 1.8" << std::endl
+      << " espacio para silla de ruedas : 1" << std::endl
+      << " tiene caja de carga : 0 capacidad kg : 0" << std::endl
+      << " nombre : test 4" << std::endl
+      << " ubicacion : Michoacan" << std::endl
+      << " pasajeros : 3" << std::endl
+      << " necesidad : silla de ruedas" << std::endl
+      << " estatus : 1" << std::endl << std::endl
+      << "-----------------------------" << std::endl;
+
+    if (ss.str() == a.mostrarAsignaciones(flota, clientelaAsig)) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+        std::cout << a.mostrarAsignaciones(flota, clientelaAsig) << std::endl;
+        std::cout << ss.str() << std::endl;
+    }
+
+
+    std::cout << "\nPrueba 10: integración en asignación cuando hay más"
+              << " clientes que los soportados por clientela " << std::endl;
+
+    std::cout << " Asignar<< "<< " Vehículo fuera del rango" << std::endl;
+    if (a.asignarVehiculo(5, flota, clientelaAsig) == -1) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
+    }
+
+    std::cout << " Verificar asignación fuera del rango" << std::endl;
+    if (!a.revisaYaAsignada(5)) {
+        std::cout << "  éxito" << std::endl;
+    } else {
+        std::cout << "  fracaso" << std::endl;
     }
 
 }

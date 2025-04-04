@@ -68,6 +68,26 @@ Cliente Clientela::consultaCliente(int indice){
   return Cliente();
 }
 
+
+// modifica el objeto en esa posición del arreglo.
+void Clientela::modificaCliente(int indice, std::string at, std::string val){
+  if(at == "estatus"){
+      if (val == "true"){
+        clientes[indice].setEstatus(true);
+      }else{
+        clientes[indice].setEstatus(false);
+      }
+  }else if (at == "nombre"){
+    clientes[indice].setNombre(val);
+  }else if (at == "ubicacion"){
+    clientes[indice].setUbicacion(val);
+  }else if (at == "necesidad"){
+    clientes[indice].setNecesidad(val);
+  }
+}
+
+
+
 //Devuelve la información de los clientes en formato string
 std::string Clientela::toString(){
   std::stringstream ss;

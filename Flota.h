@@ -8,16 +8,24 @@
 
 class Flota {
   private:
-      Auto autos[MAXV];           ///< Arreglo para almacenar objetos Auto
-      Camioneta camionetas[MAXV]; ///< Arreglo para almacenar objetos Camioneta
-      Especial especiales[MAXV];  ///< Arreglo para almacenar objetos Especial
-      int numAutos = 0;           ///< Número de objetos Auto agregados
-      int numCamionetas = 0;      ///< Número de objetos Camioneta agregados
-      int numEspeciales = 0;      ///< Número de objetos Especial agregados
+    Vehiculo **vehiculos;  ///< arreglo dinámico de vehiculos en el heap
+    int capacidad;    ///< Tamaño máximo del arreglo antes de ajustarse
+    int idVehiculo;   ///< posisción de siguiente vehiculo a registrar en arreglo
+
+
+    /**
+     * @brief Duplica la capacidad del arreglo cada que vehiculos se llena
+     *
+     */
+    void redimensionaArreglo();
 
   public:
+
+      Flota();
+
       /**
        * @brief Crea un objeto Auto en la flota
+       *
        * @param id Identificador único del vehículo
        * @param marca Marca del vehículo
        * @param conductor Nombre del conductor
@@ -25,11 +33,12 @@ class Flota {
        * @param precio Precio específico del vehículo
        * @param asientos Número de asientos del vehículo
        */
-      void creaAuto(int id, std::string marca, std::string conductor,
+      void creaAuto(std::string marca, std::string conductor,
           std::string ubicacion, float precio, int asientos);
 
       /**
        * @brief Crea un objeto Camioneta en la flota
+       *
        * @param id Identificador único del vehículo
        * @param marca Marca del vehículo
        * @param conductor Nombre del conductor
@@ -38,7 +47,7 @@ class Flota {
        * @param asientos Número de asientos del vehículo
        * @param modTarifa Modificador de la tarifa
        */
-      void creaCamioneta(int id, std::string marca, std::string conductor,
+      void creaCamioneta(std::string marca, std::string conductor,
           std::string ubicacion, float precio, int asientos, float modTarifa);
 
       /**
@@ -51,7 +60,7 @@ class Flota {
        * @param asientos Número de asientos del vehículo
        * @param modTarifa Modificador de la tarifa
        */
-      void creaCamioneta(int id, std::string marca, std::string conductor,
+      void creaCamioneta(std::string marca, std::string conductor,
           std::string ubicacion, float precio, int asientos);
 
       /**
@@ -67,7 +76,7 @@ class Flota {
        * @param cajaMaterial Indica si el vehículo tiene caja para carga de material
        * @param pesoMax Peso máximo que puede cargar el vehículo
        */
-      void creaEspecial(int id, std::string marca, std::string conductor,
+      void creaEspecial(std::string marca, std::string conductor,
          std::string ubicacion, float precio,
          int asientos, float modTarifa,  bool sillaRuedas,
          bool cajaMaterial, float pesoMax);
@@ -85,10 +94,23 @@ class Flota {
        * @param cajaMaterial Indica si el vehículo tiene caja para carga de material
        * @param pesoMax Peso máximo que puede cargar el vehículo
        */
-      void creaEspecial(int id, std::string marca, std::string conductor,
+      void creaEspecial(std::string marca, std::string conductor,
          std::string ubicacion, float precio,
          int asientos, bool sillaRuedas,
          bool cajaMaterial, float pesoMax);
+
+     /**
+      * @brief Devuelve el numero de vehiculos registrados en el arreglo vehiculos
+      * @return Entenro con la variable idVehiculoo
+      */
+      int getIdVehiculo() const;
+
+      /**
+       * @brief Devuelve el apuntador al objeto vehículo en la posición id
+       * @param id Entero con el indice del objeto a obtener
+       * @return Apuntador a objeto Vehiculo
+       */
+      Vehiculo* obtenVehiculo(int id);
 
       /**
        * @brief Filtra vehículos por un atributo (ej. "marca" o "conductor") y un valor específico

@@ -65,6 +65,15 @@ public:
   Cliente consultaCliente(int indice);
 
   /**
+   * @brief modifica el objeto en esa posición del arreglo.
+   * @param indice La posición del objeto que será devuelto.
+   * @param at Atributo a modificar.
+   * @param val Valor a asignar.
+   * @return objeto tipo Cliente
+   */
+  void modificaCliente(int indice, std::string at, std::string val);
+
+  /**
    * @brief Devuelve la información de los clientes en formato string
    * @return Información del objeto en string
    */
