@@ -62,23 +62,25 @@ Las relaciones de composición tiene implementadas en las clases los métodos pa
 
 
 
-### Pruebas para Escenarios Diferentes 
-En el archivo pruebas.cpp se pueden ver las pruebas diseñadas para 3 escenarios extremos para la clase de Asignación:
-
- * Prueba 1.-cuando no hay clientes
- * Prueba 2.-cuendo hay clientes
- * Prueba 3.-cuando se excede el número de clientes que se pueden asignar
+### Pruebas por clase
 
 Cada función involucrada en el proceso se prueba de forma separada y se compara contra el comportamiento esperado en el diseño de la prueba. 
 Adicionalmente se prueba el uso de las clases creadas y sus métodos para cada una:
 
- * Prueba 4.-Vehiculo
- * Prueba 5.-Cliente
- * Prueba 6.-Clientela
- * Prueba 7.-Auto
- * Prueba 8.-Camioneta
- * Prueba 9.-Especial
- * Prueba 10.- Flota
+ * Prueba 1.-Vehiculo
+ * Prueba 2.-Cliente
+ * Prueba 3.-Clientela
+ * Prueba 4.-Auto
+ * Prueba 5.-Camioneta
+ * Prueba 6.-Especial
+ * Prueba 7.- Flota
+
+### Pruebas de Escenarios Diferentes 
+En el archivo pruebas.cpp se pueden ver las pruebas diseñadas para 3 escenarios extremos para la clase de Asignación:
+
+ * Prueba 8.-cuando no hay clientes (caso base)
+ * Prueba 9.-cuando hay clientes (caso promedio)
+ * Prueba 10.-cuando se excede el número de clientes que se pueden asignar (caso extremo)
 
 ### Guía de Estilo
 Para mantener buen estilo en el código me basé en los materiales del curso y en la siguiente guía de recomendaciones de estilo:  https://lefticus.gitbooks.io/cpp-best-practices/content/03-Style.html# 
