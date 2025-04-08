@@ -50,6 +50,20 @@ Los costos del tranporte se calculan con la relación tarifa especifica del tran
 
 Para asignar un vehículo primero se da prioridad a la necesidad del cliente, se filtran aquellos vehículos que cumplan con la necesidad. Posteriormente se calcula la distancia entre los vehículos válidos y el cliente, y se le asigna el más cercano (menor costo para esa necesidad), ya que está la asignación se estima el costo del viaje. Si hay empates, se atiende primero a la solicitud con misma prioridad de necesidad. 
 
+    criterios de asignacion en orden de importancia:
+
+      necesidad >  silla de ruedas  
+                   cajaMaterial 500 
+                   cajaMaterial 1000
+                   auto normal
+                   camioneta 
+     
+     distancia > ubicación vehículo a ubicación cliente
+     
+     tarifa > menor tarifa
+
+     orden > primera solicitud se atiende primero 
+ 
 ### Diseño del prorgama (Diagrama de clases UML)
 
 Este grupo de clases se conecta con la clase main donde se integra el programa completo.
@@ -58,9 +72,10 @@ Este grupo de clases se conecta con la clase main donde se integra el programa c
 
 ### Notas de la Implementación
 En el diagrama se tienen sobrecargados los métodos heredados de la clase Vehículo entodas las clases hijas.
+
 Las relaciones de composición tiene implementadas en las clases los métodos para crear y borrar objetos, así como los arreglos y contadores correspondientes de cada tipo de objeto.
 
-
+Para la creación de la matriz de ubicaciones, se usó Deepseek V3 a través de la plataforma monica ai https://monica.im/share/bot?botId=deepseek_chat . Se usó para obetener todas las distancias en kilómetros y la lista parcial de colonias de la ciudad de Querétaro, esta información se tradujo en una matriz de traslado o adyancenia, que está caputarada dentro de clase Asignación.
 
 ### Pruebas por clase
 
@@ -81,6 +96,7 @@ En el archivo pruebas.cpp se pueden ver las pruebas diseñadas para 3 escenarios
  * Prueba 8.-cuando no hay clientes (caso base)
  * Prueba 9.-cuando hay clientes (caso promedio)
  * Prueba 10.-cuando se excede el número de clientes que se pueden asignar (caso extremo)
+ * Prueba 11.-verficación de asignación con los criterios de distancia y tarifas 
 
 ### Guía de Estilo
 Para mantener buen estilo en el código me basé en los materiales del curso y en la siguiente guía de recomendaciones de estilo:  https://lefticus.gitbooks.io/cpp-best-practices/content/03-Style.html# 
