@@ -30,6 +30,10 @@ void Clientela::creaCliente(std::string nom, std::string ubi,
 }
 
 
+// Devuelve el cliente
+int Clientela::getIndCliente(){
+  return indCliente;
+}
 
 // elimina el objeto cliente y recorre los demás.
 void Clientela::eliminaCliente(int indice){

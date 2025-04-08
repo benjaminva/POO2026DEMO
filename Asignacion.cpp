@@ -1,5 +1,7 @@
 #include "Asignacion.h"
 
+
+
 // Constructor por defecto
 Asignacion::Asignacion(){
   for (int i = 0; i < MAXV; i++ ){
@@ -7,11 +9,39 @@ Asignacion::Asignacion(){
   }
 }
 
+int Asignacion::convUbicacionNum(std::string ubicacion){
+  for (int i = 0; i < 19; i++ ){
+    if(ubicacion ==  ubicaciones[i]){
+      return i;
+    }
+  }
+  return -1;
+}
+
+
+std::string Asignacion::muestraUbicaciones(){
+  std::stringstream ss;
+  for (int i = 0; i < 19; i++ ){
+      ss << ubicaciones[i] << ", ";
+      if (i % 3 == 0){
+        ss  << std::endl;
+      }
+  }
+  ss  << std::endl;
+  return ss.str();
+}
 
 // Devuelve un valor de distancia entre 2 ubicaciones
 int Asignacion::calculaDistancia(std::string v, std::string c){
-  //agregar matriz destino origen, string con string.
-  return 1;
+
+  int indV = convUbicacionNum(v);
+  int indC = convUbicacionNum(c);
+
+  if (indV == -1 || indC == -1){
+    return -1;
+  }
+
+  return distancias[indV][indC];
 }
 
 
@@ -23,6 +53,7 @@ int Asignacion::asignarVehiculo(int indiceP, Flota& flota,
     std::string necesidad = clien.getNecesidad();
     std::string ubicacion = clien.getUbicacion();
     int pasajeros = clien.getPasajeros();
+
 
     std::string tipoRequerido = "";
     if (necesidad != ""){
@@ -43,6 +74,7 @@ int Asignacion::asignarVehiculo(int indiceP, Flota& flota,
       int pos = -1;
       int menor = 1000;
       int distancia;
+      float tarifa = 1000.0;
       for (int i = 0; i < flota.getIdVehiculo(); i++) {
           distancia = 1000;
           Vehiculo *temp = flota.obtenVehiculo(i);
@@ -63,9 +95,17 @@ int Asignacion::asignarVehiculo(int indiceP, Flota& flota,
             }else {
               distancia = calculaDistancia(temp->getUbicacion(), ubicacion);
             }
+
             if (distancia < menor ){
                 menor = distancia;
                 pos = i;
+                tarifa = temp->calculaTarifa();
+            }else if (distancia == menor){
+                if (temp->calculaTarifa() < tarifa){
+                    menor = distancia;
+                    pos = i;
+                    tarifa = temp->calculaTarifa();
+                }
             }
           }
       }
@@ -118,8 +158,7 @@ std::string Asignacion::mostrarAsignaciones(Flota& flota,
             int indice = asignaciones[i];
             Vehiculo* temp = flota.obtenVehiculo(i);
             aux << " Vehículo : " << temp->toString()
-
-                 << clientela.consultaCliente(indice).toString() << std::endl;
+                << clientela.consultaCliente(indice).toString() << std::endl;
         }
     }
     aux << "-----------------------------" << std::endl;

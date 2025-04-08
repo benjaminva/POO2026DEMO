@@ -76,11 +76,6 @@ void Vehiculo::setAsientos(int asi){
   asientos = asi;
 }
 
-// Calclula el costo del tipo de auto
-float Vehiculo::calculaTarifa(){
-  return  0.0;
-}
-
 // Devuelve la información del objeto en formato string
 std::string Vehiculo::toString(){
   std::stringstream ss;

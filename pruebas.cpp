@@ -30,7 +30,7 @@
  */
 int main() {
     std::cout << "Reporte de pruebas por clases:" << std::endl;
-    std::cout << "Prueba 1 : Clase Vehiculo" << std::endl;
+    std::cout << "Prueba 1 : Clase Vehiculo abstracta" << std::endl;
     std::cout << "Prueba 2 : Clase Cliente" << std::endl;
     std::cout << "Prueba 3 : Clase Clientela" << std::endl;
     std::cout << "Prueba 4 : Clase hija Auto" << std::endl;
@@ -42,85 +42,11 @@ int main() {
     std::cout << "Prueba 10 : Clase Asignacion" << std::endl;
 
 
-    // Prueba 4: Clase Vehiculo.
     std::cout << std::endl << "Prueba 1 : métodos clase Vehiculo  " << std::endl;
-    std::cout << " Constructor por defecto ";
-
-    Vehiculo v1;
-    std::stringstream ss;
-    ss << " id : 0" << std::endl
-       << " marca : " << std::endl
-       << " conductor : " << std::endl
-       << " tipo : " << std::endl
-       << " ubicacion : " << std::endl
-       << " precio : 0" << std::endl
-       << " asientos : 0" << std::endl;
-
-    if (v1.toString() == ss.str()) {
-        std::cout << "  éxito" << std::endl;
-    } else {
-        std::cout << "  fracaso" << std::endl;
-        std::cout << v1.toString() << std::endl;
-    }
-
-
-    std::cout << " Constructor normal";
-    Vehiculo v2(1, "Mitsubishi", "Eduardo Palomo", "auto", "Metepec", 12.4, 4);
-
-    ss.str("");
-    ss << " id : 1" << std::endl
-       << " marca : Mitsubishi" << std::endl
-       << " conductor : Eduardo Palomo" << std::endl
-       << " tipo : auto" << std::endl
-       << " ubicacion : Metepec" << std::endl
-       << " precio : 12.4" << std::endl
-       << " asientos : 4" << std::endl;
-
-    if (v2.toString() == ss.str()) {
-        std::cout << "  éxito" << std::endl;
-    } else {
-        std::cout << "  fracaso" << std::endl;
-        std::cout << v2.toString() << std::endl;
-    }
-
-
-    std::cout << " Setters ";
-
-    v1.setMarca("Honda");
-    v1.setConductor("Ramiro");
-    v1.setUbicacion("Lomas");
-    v1.setAsientos(2);
-    v1.setPrecio(11.1);
-
-    ss.str("");
-    ss << " id : 0" << std::endl
-       << " marca : Honda" << std::endl
-       << " conductor : Ramiro" << std::endl
-       << " tipo : " << std::endl
-       << " ubicacion : Lomas" << std::endl
-       << " precio : 11.1" << std::endl
-       << " asientos : 2" << std::endl;
-
-    if (v1.toString() == ss.str()) {
-        std::cout << "  éxito" << std::endl;
-    } else {
-        std::cout << "  fracaso" << std::endl;
-        std::cout << v1.toString() << std::endl;
-    }
-
-    std::cout << " Getters ";
-
-    ss.str(""); // borra el contenido del stream
-    ss << v1.getId() << v1.getMarca() << v1.getConductor() << v1.getAsientos();
-    if (ss.str() == "0HondaRamiro2") {
-        std::cout << "  éxito" << std::endl;
-    } else {
-        std::cout << "  fracaso" << std::endl;
-        std::cout << ss.str() << std::endl;
-    }
-
-
-    std::cout << " CalculaTarifa para auto ";
+    std::cout << " Las pruebas de Vechiculo se eliminaron por ser  " << std::endl;
+    std::cout << " clase abstracta para consultarlas se puede " << std::endl;
+    std::cout << " ver las pruebas las clases hijas" << std::endl;
+    std::cout << " o el historial de commits" << std::endl;
 
 
     // Prueba 5: Clase Cliente.
@@ -129,7 +55,7 @@ int main() {
 
     Cliente c1;
 
-    ss.str("");
+    std::stringstream ss;
     ss << " nombre : " << std::endl
      << " ubicacion : " << std::endl
      << " pasajeros : 0" << std::endl
@@ -948,7 +874,7 @@ int main() {
       << " precio : 20.4" << std::endl
       << " asientos : 7" << std::endl
       << " modificador tarifa : 1.8" << std::endl
-      << " nombre : test 2" << std::endl
+      << " nombre : test 3" << std::endl
       << " ubicacion : Chiapas" << std::endl
       << " pasajeros : 6" << std::endl
       << " necesidad : ninguna" << std::endl
@@ -962,7 +888,7 @@ int main() {
       << " precio : 10.4" << std::endl
       << " asientos : 6" << std::endl
       << " modificador tarifa : 2.8" << std::endl
-      << " nombre : test 3" << std::endl
+      << " nombre : test 2" << std::endl
       << " ubicacion : Chiapas" << std::endl
       << " pasajeros : 6" << std::endl
       << " necesidad : ninguna" << std::endl
@@ -1029,7 +955,7 @@ int main() {
     std::cout << "\nPrueba 10: integración en asignación cuando hay más"
               << " clientes que los soportados por clientela " << std::endl;
 
-    std::cout << " Asignar<< "<< " Vehículo fuera del rango" << std::endl;
+    std::cout << " Asignar "<< " Vehículo fuera del rango" << std::endl;
     if (a.asignarVehiculo(5, flota, clientelaAsig) == -1) {
         std::cout << "  éxito" << std::endl;
     } else {
@@ -1042,5 +968,62 @@ int main() {
     } else {
         std::cout << "  fracaso" << std::endl;
     }
+
+
+    std::cout << "\nPrueba 11: matriz de distancia" << std::endl;
+
+    Asignacion distAsig;
+    Flota f3;
+
+    f3.creaAuto("Mazda", "Mijares","Centro", 7.4, 4);
+    f3.creaAuto("Mazda", "Juan Gabriel","La Cruz", 8.0, 4);
+    f3.creaAuto("Honda", "Rigo Tobar","Calesa", 7.4, 4);
+    f3.creaAuto("Honda", "Ana Gabriel","Las Campanas", 8.0, 4);
+
+    Clientela cl3;
+
+    cl3.creaCliente("Benjamin", "Karina", 3, "ninguna");
+    cl3.creaCliente("Eduardo", "Centro", 2, "ninguna");
+
+    distAsig.asignarVehiculo(0,f3,cl3);
+    distAsig.asignarVehiculo(1,f3,cl3);
+
+    ss.str(""); // borra el contenido del stream
+    ss << "--- Asignaciones Actuales ---" << std::endl
+      << " (asignacion : 0 )" << std::endl
+      << " Vehículo :  id : 0" << std::endl
+      << " marca : Mazda" << std::endl
+      << " conductor : Mijares" << std::endl
+      << " tipo : auto" << std::endl
+      << " ubicacion : Centro" << std::endl
+      << " precio : 7.4" << std::endl
+      << " asientos : 4" << std::endl
+      << " nombre : Eduardo" << std::endl
+      << " ubicacion : Centro" << std::endl
+      << " pasajeros : 2" << std::endl
+      << " necesidad : ninguna" << std::endl
+      << " estatus : 1" << std::endl<< std::endl
+      << " (asignacion : 2 )" << std::endl
+      << " Vehículo :  id : 2" << std::endl
+      << " marca : Honda" << std::endl
+      << " conductor : Rigo Tobar" << std::endl
+      << " tipo : auto" << std::endl
+      << " ubicacion : Calesa" << std::endl
+      << " precio : 7.4" << std::endl
+      << " asientos : 4" << std::endl
+      << " nombre : Benjamin" << std::endl
+      << " ubicacion : Karina" << std::endl
+      << " pasajeros : 3" << std::endl
+      << " necesidad : ninguna" << std::endl
+      << " estatus : 1" << std::endl<< std::endl
+      << "-----------------------------" << std::endl;
+
+      if (ss.str() ==  distAsig.mostrarAsignaciones(f3, cl3)) {
+          std::cout << "  éxito" << std::endl;
+      } else {
+          std::cout << "  fracaso" << std::endl;
+          std::cout << ss.str() << std::endl;
+          std::cout << distAsig.mostrarAsignaciones(f3, cl3) << std::endl;
+      }
 
 }

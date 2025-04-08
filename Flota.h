@@ -15,7 +15,6 @@ class Flota {
 
     /**
      * @brief Duplica la capacidad del arreglo cada que vehiculos se llena
-     *
      */
     void redimensionaArreglo();
 

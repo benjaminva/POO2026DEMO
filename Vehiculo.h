@@ -107,7 +107,7 @@ class Vehiculo {
      * @brief Calclula el costo del tipo de auto
      * @return Costo de la tarifa
      */
-    virtual float calculaTarifa();
+    virtual float calculaTarifa() = 0;
 
     /**
      * @brief Devuelve la información del objeto en formato string

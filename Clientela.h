@@ -2,7 +2,7 @@
 #define CLIENTELA_H
 
 
-#define MAXC 20  ///< Maximo numero de clientes.
+#define MAXC 100  ///< Maximo numero de clientes.
 
 #include "Cliente.h"
 #include <string>
@@ -17,7 +17,7 @@
  */
 class Clientela {
 private:
-  Cliente clientes[MAXC];
+  Cliente clientes[MAXC]; ///< clientes
   int indCliente; ///< número actual de clientes.
 
 public:
@@ -26,6 +26,11 @@ public:
    * @brief Constructor por defecto de la clase Clientela.
    */
   Clientela();
+
+  /**
+   * @brief Devuelve el cliente.
+   */
+  int getIndCliente();
 
   /**
    * @brief Crea un objeto cliente y lo agrega al arreglo clientes.
