@@ -103,7 +103,7 @@ Vehiculo* Flota::obtenVehiculo(int id){
 }
 
 
-// Filtra vehículos por un atributo (ej. "marca" o "conductor") y un valor específico
+// Filtra vehículos por un atributo y un valor específico
 std::string Flota::filtrarVehiculo(std::string atributo, std::string valor) {
     std::stringstream ss;
 
@@ -111,25 +111,39 @@ std::string Flota::filtrarVehiculo(std::string atributo, std::string valor) {
 
     if (atributo == "tipo") {
       for (int i = 0; i < idVehiculo; i++) {
+
         if (vehiculos[i]->getTipo() == valor){
-           ss << vehiculos[i]->toString();
+           ss << vehiculos[i]->toString()
+             << " costo km : " << vehiculos[i]->calculaTarifa() << std::endl
+             << std::endl;
         }
+
       }
     } else if (atributo == "ubicacion") {
       for (int i = 0; i < idVehiculo; i++) {
+
         if (vehiculos[i]->getUbicacion() == valor){
-           ss << vehiculos[i]->toString();
+           ss << vehiculos[i]->toString()
+           << " costo km : " << vehiculos[i]->calculaTarifa() << std::endl
+           << std::endl;
         }
+
       }
     } else if (atributo == "asientos") {
       for (int i = 0; i < idVehiculo; i++) {
+
         if (vehiculos[i]->getAsientos() == stoi(valor)){
-           ss << vehiculos[i]->toString();
+           ss << vehiculos[i]->toString()
+           << " costo km : " << vehiculos[i]->calculaTarifa() << std::endl
+           << std::endl;
         }
+
       }
     } else if (atributo == "todos"){
         for (int i = 0; i < idVehiculo; i++) {
-           ss << vehiculos[i]->toString();
+           ss << vehiculos[i]->toString()
+           << " costo km : " << vehiculos[i]->calculaTarifa() << std::endl
+           << std::endl;
         }
     }
     return ss.str();

@@ -29,88 +29,103 @@ class Vehiculo {
 
     /**
      * @brief Constructor con parámetros
+     *
      * @param id Identificador único del vehículo
      * @param marca Marca del vehículo
      * @param conductor Nombre del conductor
      * @param tipo Tipo de vehículo
      */
     Vehiculo(int id, std::string marca, std::string conductor,
-                std::string tipo, std::string ubicacion, float precio, int asientos);
+                std::string tipo, std::string ubicacion,
+                float precio, int asientos);
 
     /**
      * @brief Obtiene el ID del vehículo
+     *
      * @return ID del vehículo
      */
     int getId() const;
 
     /**
      * @brief Obtiene la marca del vehículo
+     *
      * @return Marca del vehículo
      */
     std::string getMarca() const;
 
     /**
      * @brief Obtiene el nombre del conductor
+     *
      * @return Nombre del conductor
      */
     std::string getConductor() const;
 
     /**
      * @brief Obtiene el tipo de vehículo
+     *
      * @return Tipo de vehículo
      */
     std::string getTipo() const;
 
     /**
      * @brief Obtiene la ubiacaión del vehículo
+     *
      * @return Ubicacion de vehículo
      */
     std::string getUbicacion() const;
 
     /**
      * @brief Obtiene el número de asientos del vehículo
+     *
      * @return Numero de asientos
      */
     int getAsientos() const;
 
     /**
      * @brief Establece la marca del vehículo
+     *
      * @param ma Nueva marca del vehículo
      */
     void setMarca(std::string ma);
 
     /**
      * @brief Establece el nombre del conductor
+     *
      * @param cu Nuevo nombre del conductor
      */
     void setConductor(std::string cu);
 
     /**
      * @brief Establece la Ubicacion del vehículo
+     *
      * @param ubi Nuevo ubicación
      */
     void setUbicacion(std::string ubi);
 
     /**
      * @brief Establece el nuevo precio del vehículo
+     *
      * @param pre Nuevo precio
      */
     void setPrecio(float pre);
 
     /**
      * @brief Establece el número de asientos del vehículo
+     *
      * @param asi Nuevo número de asientos
      */
     void setAsientos(int asi);
 
     /**
      * @brief Calclula el costo del tipo de auto
+     *
      * @return Costo de la tarifa
      */
     virtual float calculaTarifa() = 0;
 
     /**
      * @brief Devuelve la información del objeto en formato string
+     *
      * @return Información del obejto en string
      */
     virtual std::string toString();
@@ -134,6 +149,7 @@ class Auto : public Vehiculo{
 
     /**
      * @brief Constructor con parámetros
+     *
      * @param id Identificador único del vehículo
      * @param marca Marca del vehículo
      * @param conductor Nombre del conductor
@@ -144,6 +160,7 @@ class Auto : public Vehiculo{
 
     /**
      * @brief Devuelve la información del objeto en formato string
+     *
      * @return Información del obejto en string
      */
     std::string toString();
@@ -151,6 +168,7 @@ class Auto : public Vehiculo{
 
     /**
      * @brief Calclula el costo del tipo de auto
+     *
      * @return Costo de la tarifa
      */
     float calculaTarifa();
@@ -159,15 +177,15 @@ class Auto : public Vehiculo{
 };
 
 /**
-  * @brief Clase que representa un auto derivado de un Vehiculo
+  * @brief Clase que representa una camioneta derivado de un Vehiculo
   *
-  * Contiene la información auto.
+  * Contiene la información camioneta.
   *
   * @author Benjamín Valdés Aguirre
   */
 class Camioneta : public Vehiculo{
   private:
-    float modTarifa;
+    float modTarifa; ///< factor que modifica al precio base
 
   public:
 
@@ -178,10 +196,13 @@ class Camioneta : public Vehiculo{
 
     /**
      * @brief Constructor con parámetros
+     *
      * @param id Identificador único del vehículo
      * @param marca Marca del vehículo
      * @param conductor Nombre del conductor
-     * @param tipo Tipo de vehículo
+     * @param tipo Ubicacion de vehículo
+     * @param precio Float con el precio base del vehículo
+     * @param asientos Entero con los asientos del vehículo
      * @param tarifa El monto modifacadore de tarifas 1.5 1.8
      */
     Camioneta(int id, std::string marca, std::string conductor,
@@ -189,23 +210,27 @@ class Camioneta : public Vehiculo{
 
     /**
      * @brief Constructor con parámetros
+     *
      * @param id Identificador único del vehículo
      * @param marca Marca del vehículo
      * @param conductor Nombre del conductor
-     * @param tipo Tipo de vehículo
-     * @param tarifa El monto modifacadore de tarifas 1.5 1.8
+     * @param tipo Ubicacion de vehículo
+     * @param precio Float con el precio base del vehículo
+     * @param asientos Entero con los asientos del vehículo
      */
     Camioneta(int id, std::string marca, std::string conductor,
         std::string ubicacion, float precio, int asientos);
 
     /**
      * @brief Actualiza el valor del modificador de la tarifa
+     *
      * @param tar Valor del nuevo modifcador de la tarifa
      */
     void setModTarifa( float tar);
 
     /**
      * @brief Devuelve la información del objeto en formato string
+     *
      * @return Información del obejto en string
      */
     std::string toString();
@@ -213,6 +238,7 @@ class Camioneta : public Vehiculo{
 
     /**
       * @brief Calclula el costo del tipo de auto
+      *
       * @return Costo de la tarifa
       */
     float calculaTarifa();
@@ -229,10 +255,10 @@ class Camioneta : public Vehiculo{
   */
 class Especial : public Vehiculo{
   private:
-    float modTarifa;
-    bool sillaRuedas;
-    bool cajaMaterial;
-    float pesoMax;
+    float modTarifa; ///< factor que modifica al precio base
+    bool sillaRuedas; ///< indicador sobre si se cuenta con silla de ruedas
+    bool cajaMaterial; ///< indicador sobre si se cuenta con caja
+    float pesoMax; ///< peso maximo que carga la caja, sin caja es 0
 
 
   public:
@@ -244,6 +270,7 @@ class Especial : public Vehiculo{
 
     /**
      * @brief Constructor con parámetros
+     *
      * @param id Identificador único del vehículo
      * @param marca Marca del vehículo
      * @param conductor Nombre del conductor
@@ -263,6 +290,7 @@ class Especial : public Vehiculo{
      *        tipo de necesidad : silla de ruedas  ->   2.0
      *                            cajaMaterial 500 ->   1.8
      *                            cajaMaterial 1000 ->  2.1
+     *
      * @param id Identificador único del vehículo
      * @param marca Marca del vehículo
      * @param conductor Nombre del conductor
@@ -278,38 +306,44 @@ class Especial : public Vehiculo{
 
     /**
      * @brief Si el vehiculo tiene espacio para silla de ruedas o no
+     *
      * @return Verdadero si tiene espacio para silla de ruedas
      */
     bool getSillaRuedas() const;
 
     /**
      * @brief Si el vehiculo tiene caja trasera para carga de material
+     *
      * @return Verdadero si tiene caja
      */
     bool getCajaMaterial() const;
 
     /**
      * @brief Obtiene el peso maximo que puede cargar el vehículo
+     *
      * @return Peso Máximo
      */
     float getPesoMax() const;
 
     /**
      * @brief Actualiza el valor del modificador de la tarifa
+     *
      * @param tar Valor del nuevo modifcador de la tarifa
      */
     void setModTarifa( float tar ) ;
 
     /**
      * @brief Devuelve la información del objeto en formato string
+     *
      * @return Información del obejto en string
      */
     std::string toString();
 
     /**
-      * @brief Calclula el costo del tipo de auto
-      * @return Costo de la tarifa
-      */
+     * @brief Calclula el costo del tipo de auto
+     *
+     * @return Costo de la tarifa
+     */
     float calculaTarifa();
 
 

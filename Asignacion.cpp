@@ -9,6 +9,7 @@ Asignacion::Asignacion(){
   }
 }
 
+// obtiene el indice numérico de una ubicación
 int Asignacion::convUbicacionNum(std::string ubicacion){
   for (int i = 0; i < 19; i++ ){
     if(ubicacion ==  ubicaciones[i]){
@@ -18,7 +19,7 @@ int Asignacion::convUbicacionNum(std::string ubicacion){
   return -1;
 }
 
-
+// obtiene una cadena con tdoas las ubicaciones
 std::string Asignacion::muestraUbicaciones(){
   std::stringstream ss;
   for (int i = 0; i < 19; i++ ){
@@ -54,9 +55,9 @@ int Asignacion::asignarVehiculo(int indiceP, Flota& flota,
     std::string ubicacion = clien.getUbicacion();
     int pasajeros = clien.getPasajeros();
 
-
     std::string tipoRequerido = "";
     if (necesidad != ""){
+
       if (necesidad == "ninguna" && pasajeros < 5) {
           tipoRequerido = "auto";
       }else if (necesidad == "ninguna" && pasajeros < 8) {
@@ -78,29 +79,40 @@ int Asignacion::asignarVehiculo(int indiceP, Flota& flota,
       for (int i = 0; i < flota.getIdVehiculo(); i++) {
           distancia = 1000;
           Vehiculo *temp = flota.obtenVehiculo(i);
-          if (temp->getTipo() == tipoRequerido && asignaciones[i] == -1) {
-            if(temp->getTipo() == "especial"){
+
+          if (temp->getTipo() == tipoRequerido &&
+              temp->getAsientos() >= pasajeros &&
+              asignaciones[i] == -1) {
+
+            if (temp->getTipo() == "especial"){
                 Especial *esp = (Especial* )temp;
-                if(necesidad == "silla de ruedas" &&
-                            esp->getSillaRuedas()){
-                    distancia = calculaDistancia(esp->getUbicacion(), ubicacion);
+
+                if (necesidad == "silla de ruedas" &&
+                    esp->getSillaRuedas()){
+
+                  distancia = calculaDistancia(esp->getUbicacion(), ubicacion);
+
                 } else if (necesidad == "caja 500 kilos" &&
-                            esp->getPesoMax() == 500){
-                    distancia = calculaDistancia(esp->getUbicacion(), ubicacion);
+                          esp->getPesoMax() == 500){
+
+                  distancia = calculaDistancia(esp->getUbicacion(), ubicacion);
+
                 } else if (necesidad == "caja 1000 kilos" ||
                             necesidad == "caja 500 kilos" &&
                             esp->getPesoMax() == 1000){
-                    distancia = calculaDistancia(esp->getUbicacion(), ubicacion);
+
+                  distancia = calculaDistancia(esp->getUbicacion(), ubicacion);
+
                 }
-            }else {
+            } else {
               distancia = calculaDistancia(temp->getUbicacion(), ubicacion);
             }
 
-            if (distancia < menor ){
+            if ( distancia < menor ){
                 menor = distancia;
                 pos = i;
                 tarifa = temp->calculaTarifa();
-            }else if (distancia == menor){
+            } else if (distancia == menor){
                 if (temp->calculaTarifa() < tarifa){
                     menor = distancia;
                     pos = i;
@@ -109,12 +121,15 @@ int Asignacion::asignarVehiculo(int indiceP, Flota& flota,
             }
           }
       }
+
       if (pos != -1){
         asignaciones[pos] = indiceP;
         clientela.modificaCliente(indiceP,"estatus","true");
         return pos;
       }
+
     }
+
     return -1;
 }
 

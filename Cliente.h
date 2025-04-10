@@ -6,8 +6,8 @@
 /**
  * @brief Clase que representa a un Cliente.
  *
- * La clase Cliente almacena información sobre un cliente, incluyendo su nombre, necesidad,
- * ubicación y estado.
+ * La clase Cliente almacena información sobre un cliente, incluyendo su nombre,
+ * necesidad, ubicación y estado.
  *
  * @author Benjamin Valdes Aguirre
  */
@@ -27,6 +27,7 @@ public:
 
     /**
      * @brief Constructor de la clase Cliente.
+     *
      * @param nom Nombre del cliente.
      * @param ubi Ubicación del cliente.
      * @param pas Cantidad de pasajeros.
@@ -36,6 +37,7 @@ public:
 
     /**
      * @brief Constructor de la clase Cliente.
+     *
      * @param nom Nombre del cliente.
      * @param ubi Ubicación del cliente.
      * @param pas Cantidad de pasajeros.
@@ -45,60 +47,71 @@ public:
 
     /**
      * @brief Obtiene el nombre del cliente.
+     *
      * @return El nombre del cliente.
      */
     std::string getNombre() const;
 
     /**
      * @brief Obtiene la ubicación del cliente.
+     *
      * @return La ubicación del cliente.
      */
     std::string getUbicacion() const;
 
     /**
      * @brief Obtiene la necesidad del cliente.
+     *
      * @return La necesidad del cliente.
      */
     std::string getNecesidad() const;
 
     /**
      * @brief Obtiene el numero de pasajeros.
+     *
      * @return int Numero de pasejeros.
      */
     int getPasajeros() const;
 
     /**
      * @brief Obtiene el estado del cliente.
+     *
      * @return `true` si el cliente está activo, `false` si está inactivo.
      */
     bool getEstatus() const;
 
     /**
      * @brief Establece una nueva necesidad para el cliente.
+     *
      * @param nuevaNec Nueva necesidad del cliente.
      */
     void setNecesidad(std::string nuevaNec);
 
     /**
      * @brief Establece un nuevo nombre para el cliente.
+     *
      * @param nuevoNom Nuevo nombre del cliente.
      */
     void setNombre(std::string nuevoNom);
 
     /**
      * @brief Establece una nueva ubicación para el cliente.
+     *
      * @param nuevaUbi Nueva ubicación del cliente.
      */
     void setUbicacion(std::string nuevaUbi);
 
     /**
      * @brief Establece un nuevo estado para el cliente.
-     * @param nuevoEst Nuevo estado del cliente (`true` para activo, `false` para inactivo).
+     *
+     * @param nuevoEst Nuevo estado del cliente (`true` para activo, `false`
+     * para inactivo).
      */
     void setEstatus(bool nuevoEst);
 
     /**
      * @brief Devuelve la información del objeto en formato string
+     *
      * @return Información del objeto en string
      */
     std::string toString();

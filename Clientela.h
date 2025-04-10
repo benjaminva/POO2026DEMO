@@ -34,6 +34,7 @@ public:
 
   /**
    * @brief Crea un objeto cliente y lo agrega al arreglo clientes.
+   *
    * @param nom Nombre del cliente.
    * @param ubi Ubicación del cliente.
    * @param pas Cantidad de pasajeros.
@@ -43,6 +44,7 @@ public:
 
   /**
    * @brief Crea un objeto cliente y lo agrega al arreglo clientes.
+   *
    * @param nom Nombre del cliente.
    * @param ubi Ubicación del cliente.
    * @param pas Cantidad de pasajeros.
@@ -51,6 +53,7 @@ public:
 
   /**
    * @brief elimina el objeto cliente y recorre los demás.
+   *
    * @param indice Posicion del objeto a a borrar del arreglo de clientes.
    */
   void eliminaCliente(int indice);
@@ -58,28 +61,34 @@ public:
 
   /**
    * @brief Muestra los clientes con necesidades específicas.
+   *
    * @param necesidad La necesidad usada para filtrar a los clientes.
    */
   std::string filtraNecesidad(std::string necesidad);
 
   /**
    * @brief Devuelve el objeto en esa posición del arreglo.
+   *
    * @param indice La posición del objeto que será devuelto.
+   *
    * @return objeto tipo Cliente
    */
   Cliente consultaCliente(int indice);
 
   /**
    * @brief modifica el objeto en esa posición del arreglo.
+   *
    * @param indice La posición del objeto que será devuelto.
    * @param at Atributo a modificar.
    * @param val Valor a asignar.
+   *
    * @return objeto tipo Cliente
    */
   void modificaCliente(int indice, std::string at, std::string val);
 
   /**
    * @brief Devuelve la información de los clientes en formato string
+   *
    * @return Información del objeto en string
    */
   std::string toString();

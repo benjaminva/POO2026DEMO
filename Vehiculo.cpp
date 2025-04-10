@@ -123,13 +123,15 @@ Camioneta::Camioneta():Vehiculo(), modTarifa(0){}
 // Constructor con parámetros
 Camioneta::Camioneta(int id, std::string marca, std::string conductor,
           std::string ubicacion, float precio, int asientos, float modTarifa):
-            Vehiculo(id, marca, conductor, "camioneta", ubicacion, precio, asientos),
+            Vehiculo(id, marca, conductor, "camioneta",
+                        ubicacion, precio, asientos),
             modTarifa(modTarifa) {}
 
 // Constructor con parámetros
 Camioneta::Camioneta(int id, std::string marca, std::string conductor,
           std::string ubicacion, float precio, int asientos):
-            Vehiculo(id, marca, conductor, "camioneta", ubicacion, precio, asientos),
+            Vehiculo(id, marca, conductor, "camioneta",
+                        ubicacion, precio, asientos),
             modTarifa(1.5) {}
 
 // Actualiza el valor del modificador de la tarifa
@@ -153,8 +155,8 @@ float Camioneta::calculaTarifa(){
 
 
 //Constructor por defetco
-Especial::Especial():Vehiculo(), modTarifa(0), sillaRuedas(false), cajaMaterial(false),
-  pesoMax(0){}
+Especial::Especial():Vehiculo(), modTarifa(0), sillaRuedas(false),
+                    cajaMaterial(false), pesoMax(0){}
 
 
 //Constructor con parámetros

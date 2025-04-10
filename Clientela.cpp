@@ -3,9 +3,10 @@
 #include <sstream>
 #include <iostream>
 
+// Constructor por defecto
 Clientela::Clientela(): indCliente(0){};
 
-//Crea un objeto cliente y lo agrega al arreglo clientes.
+// Crea un objeto cliente y lo agrega al arreglo clientes.
 void Clientela::creaCliente(std::string nom, std::string ubi,
                                       int pas, std::string nec){
 
@@ -17,7 +18,7 @@ void Clientela::creaCliente(std::string nom, std::string ubi,
   }
 }
 
-//Crea un objeto cliente y lo agrega al arreglo clientes.
+// Crea un objeto cliente y lo agrega al arreglo clientes.
 void Clientela::creaCliente(std::string nom, std::string ubi,
                                       int pas){
 

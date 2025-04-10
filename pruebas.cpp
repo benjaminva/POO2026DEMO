@@ -42,8 +42,10 @@ int main() {
     std::cout << "Prueba 10 : Clase Asignacion" << std::endl;
 
 
-    std::cout << std::endl << "Prueba 1 : métodos clase Vehiculo  " << std::endl;
-    std::cout << " Las pruebas de Vechiculo se eliminaron por ser  " << std::endl;
+    std::cout << std::endl << "Prueba 1 : métodos clase Vehiculo  "
+              << std::endl;
+    std::cout << " Las pruebas de Vechiculo se eliminaron por ser  "
+              << std::endl;
     std::cout << " clase abstracta para consultarlas se puede " << std::endl;
     std::cout << " ver las pruebas las clases hijas" << std::endl;
     std::cout << " o el historial de commits" << std::endl;
@@ -139,7 +141,8 @@ int main() {
         std::cout << ss.str() << std::endl;
     }
 
-    std::cout << std::endl << "Prueba 3 : métodos clase Clientela  " << std::endl;
+    std::cout << std::endl << "Prueba 3 : métodos clase Clientela  "
+              << std::endl;
     std::cout << " Constructor por defecto ";
 
     Clientela clientela;
@@ -721,7 +724,8 @@ int main() {
 
 
 
-    std::cout << "\nPrueba 8: integración en asignación cuando no hay clientes" << std::endl;
+    std::cout << std::endl << "Prueba 8: integración en asignación "
+              << "cuando no hay clientes" << std::endl;
 
     Asignacion a;
     Clientela clientelaAsig;
@@ -751,10 +755,12 @@ int main() {
         std::cout << "  éxito" << std::endl;
     } else {
         std::cout << "  fracaso" << std::endl;
-        std::cout << a.mostrarAsignaciones(flota, clientelaAsig) << ss.str() << std::endl;
+        std::cout << a.mostrarAsignaciones(flota, clientelaAsig) << ss.str()
+                  << std::endl;
     }
 
-    std::cout << "\nPrueba 9:integración en asignación cuando hay clientes" << std::endl;
+    std::cout << std::endl << "Prueba 9:integración en asignación "
+              << " cuando hay clientes" << std::endl;
     numClientes = 2;
 
     for (int i = 0; i < numClientes; i++) {
@@ -805,7 +811,8 @@ int main() {
         }
     }
 
-    std::cout << " Verificar asignaciones cuando sí están asignadas" << std::endl;
+    std::cout << " Verificar asignaciones cuando sí están asignadas"
+              << std::endl;
     for (int i = 0; i < 5; i++) {
         if (a.revisaYaAsignada(i)) {
             std::cout << "  éxito" << std::endl;
@@ -821,8 +828,8 @@ int main() {
         }
     }
 
-
-    std::cout << " Verificar asignaciones cuando no están asignadas" << std::endl;
+    std::cout << " Verificar asignaciones cuando no están asignadas"
+              << std::endl;
     if (!a.revisaYaAsignada(5)) {
         std::cout << "  éxito" << std::endl;
     } else {
