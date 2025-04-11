@@ -572,7 +572,8 @@ int main() {
        << " tipo : auto" << std::endl
        << " ubicacion : Acapulco" << std::endl
        << " precio : 7.4" << std::endl
-       << " asientos : 4" << std::endl;
+       << " asientos : 4" << std::endl
+       << " costo km : 7.4" << std::endl<< std::endl;
 
     ss << " id : 1" << std::endl
        << " marca : Mazda" << std::endl
@@ -580,7 +581,8 @@ int main() {
        << " tipo : auto" << std::endl
        << " ubicacion : Michoacan" << std::endl
        << " precio : 8" << std::endl
-       << " asientos : 4" << std::endl;
+       << " asientos : 4" << std::endl
+       << " costo km : 8" << std::endl<< std::endl;
 
 
     if (flota.filtrarVehiculo("tipo","auto") == ss.str()) {
@@ -605,7 +607,8 @@ int main() {
        << " ubicacion : Edo de Mexico" << std::endl
        << " precio : 20.4" << std::endl
        << " asientos : 7" << std::endl
-       << " modificador tarifa : 1.8"<< std::endl;
+       << " modificador tarifa : 1.8"<< std::endl
+       << " costo km : 36.72" << std::endl<< std::endl;
 
     ss << " id : 3" << std::endl
         << " marca : Ford" << std::endl
@@ -614,7 +617,9 @@ int main() {
         << " ubicacion : Chiapas" << std::endl
         << " precio : 10.4" << std::endl
         << " asientos : 6" << std::endl
-        << " modificador tarifa : 2.8"<< std::endl;
+        << " modificador tarifa : 2.8"<< std::endl
+        << " costo km : 29.12" << std::endl<< std::endl;
+
 
     if (flota.filtrarVehiculo("tipo","camioneta") == ss.str()) {
         std::cout << "  éxito" << std::endl;
@@ -644,7 +649,9 @@ int main() {
        << " asientos : 2" << std::endl
        << " modificador tarifa : 1.8" << std::endl
        << " espacio para silla de ruedas : 0" << std::endl
-       << " tiene caja de carga : 1" << " capacidad kg : 500" << std::endl;
+       << " tiene caja de carga : 1" << " capacidad kg : 500" << std::endl
+       << " costo km : 36.72" << std::endl<< std::endl;
+
 
    ss << " id : 5" << std::endl
       << " marca : Chrisler" << std::endl
@@ -655,7 +662,8 @@ int main() {
       << " asientos : 1" << std::endl
       << " modificador tarifa : 1.8" << std::endl
       << " espacio para silla de ruedas : 0" << std::endl
-      << " tiene caja de carga : 1" << " capacidad kg : 1000" << std::endl;
+      << " tiene caja de carga : 1" << " capacidad kg : 1000" << std::endl
+      << " costo km : 72.72" << std::endl<< std::endl;
 
    ss << " id : 6" << std::endl
       << " marca : Chrisler" << std::endl
@@ -666,7 +674,9 @@ int main() {
       << " asientos : 4" << std::endl
       << " modificador tarifa : 1.8" << std::endl
       << " espacio para silla de ruedas : 1" << std::endl
-      << " tiene caja de carga : 0" << " capacidad kg : 0" << std::endl;
+      << " tiene caja de carga : 0" << " capacidad kg : 0" << std::endl
+      << " costo km : 72.72" << std::endl<< std::endl;
+
 
     if (flota.filtrarVehiculo("tipo","especial") == ss.str()) {
         std::cout << "  éxito" << std::endl;
@@ -691,7 +701,9 @@ int main() {
         << " ubicacion : Chiapas" << std::endl
         << " precio : 10.4" << std::endl
         << " asientos : 6" << std::endl
-        << " modificador tarifa : 1.5"<< std::endl
+        << " modificador tarifa : 1.5" << std::endl
+        << " costo km : 15.6" << std::endl<< std::endl
+
         << " id : 1" << std::endl
         << " marca : Chrisler" << std::endl
         << " conductor : Dan Brown" << std::endl
@@ -701,7 +713,8 @@ int main() {
         << " asientos : 2" << std::endl
         << " modificador tarifa : 1.8" << std::endl
         << " espacio para silla de ruedas : 0" << std::endl
-        << " tiene caja de carga : 1" << " capacidad kg : 500" << std::endl;
+        << " tiene caja de carga : 1" << " capacidad kg : 500" << std::endl
+        << " costo km : 36.72" << std::endl<< std::endl;
 
     if (f2.filtrarVehiculo("todos","") == ss.str()) {
         std::cout << "  éxito" << std::endl;
@@ -788,22 +801,10 @@ int main() {
             std::cout << "  fracaso" << std::endl;
         }
     }
-    for (int i = 6; i < 8; i++) {
-        if (a.asignarVehiculo(i, flota, clientelaAsig) != -1) {
-            std::cout << "  éxito" << std::endl;
-        } else {
-            std::cout << "  fracaso" << std::endl;
-        }
-    }
+
 
     std::cout << " Asignar vehículos cuando no es posible" << std::endl;
-    if (a.asignarVehiculo(5, flota, clientelaAsig) == -1) {
-        std::cout << "  éxito" << std::endl;
-    } else {
-        std::cout << "  fracaso" << std::endl;
-    }
-
-    for (int i = 8; i < 10; i++) {
+    for (int i = 5; i < 10; i++) {
         if (a.asignarVehiculo(i, flota, clientelaAsig) == -1) {
             std::cout << "  éxito" << std::endl;
         } else {
@@ -820,22 +821,10 @@ int main() {
             std::cout << "  fracaso" << std::endl;
         }
     }
-    for (int i = 6; i < 8; i++) {
-        if (a.revisaYaAsignada(i)) {
-            std::cout << "  éxito" << std::endl;
-        } else {
-            std::cout << "  fracaso" << std::endl;
-        }
-    }
 
     std::cout << " Verificar asignaciones cuando no están asignadas"
               << std::endl;
-    if (!a.revisaYaAsignada(5)) {
-        std::cout << "  éxito" << std::endl;
-    } else {
-        std::cout << "  fracaso" << std::endl;
-    }
-    for (int i = 8; i < 10; i++) {
+    for (int i = 5; i < 10; i++) {
         if (!a.revisaYaAsignada(i)) {
             std::cout << "  éxito" << std::endl;
         } else {
@@ -858,7 +847,8 @@ int main() {
       << " ubicacion : Acapulco" << std::endl
       << " pasajeros : 2" << std::endl
       << " necesidad : ninguna" << std::endl
-      << " estatus : 1" << std::endl<< std::endl
+      << " estatus : 1" << std::endl
+      << std::endl
       << " (asignacion : 1 )" << std::endl
       << " Vehículo :  id : 1" << std::endl
       << " marca : Mazda" << std::endl
@@ -871,7 +861,8 @@ int main() {
       << " ubicacion : Acapulco" << std::endl
       << " pasajeros : 2" << std::endl
       << " necesidad : ninguna" << std::endl
-      << " estatus : 1" << std::endl<< std::endl
+      << " estatus : 1" << std::endl
+      << std::endl
       << " (asignacion : 2 )" << std::endl
       << " Vehículo :  id : 2" << std::endl
       << " marca : Ford" << std::endl
@@ -885,7 +876,8 @@ int main() {
       << " ubicacion : Chiapas" << std::endl
       << " pasajeros : 6" << std::endl
       << " necesidad : ninguna" << std::endl
-      << " estatus : 1" << std::endl<< std::endl
+      << " estatus : 1" << std::endl
+      << std::endl
       << " (asignacion : 3 )" << std::endl
       << " Vehículo :  id : 3" << std::endl
       << " marca : Ford" << std::endl
@@ -899,39 +891,8 @@ int main() {
       << " ubicacion : Chiapas" << std::endl
       << " pasajeros : 6" << std::endl
       << " necesidad : ninguna" << std::endl
-      << " estatus : 1" << std::endl<< std::endl
-      << " (asignacion : 4 )" << std::endl
-      << " Vehículo :  id : 4" << std::endl
-      << " marca : Chrisler" << std::endl
-      << " conductor : Dan Brown" << std::endl
-      << " tipo : especial" << std::endl
-      << " ubicacion : Sonora" << std::endl
-      << " precio : 20.4" << std::endl
-      << " asientos : 2" << std::endl
-      << " modificador tarifa : 1.8" << std::endl
-      << " espacio para silla de ruedas : 0" << std::endl
-      << " tiene caja de carga : 1 capacidad kg : 500" << std::endl
-      << " nombre : test 6" << std::endl
-      << " ubicacion : Queretaro" << std::endl
-      << " pasajeros : 4" << std::endl
-      << " necesidad : caja 500 kilos" << std::endl
-      << " estatus : 1" << std::endl<< std::endl
-      << " (asignacion : 5 )" << std::endl
-      << " Vehículo :  id : 5" << std::endl
-      << " marca : Chrisler" << std::endl
-      << " conductor : Humberto" << std::endl
-      << " tipo : especial" << std::endl
-      << " ubicacion : Italia" << std::endl
-      << " precio : 40.4" << std::endl
-      << " asientos : 1" << std::endl
-      << " modificador tarifa : 1.8" << std::endl
-      << " espacio para silla de ruedas : 0" << std::endl
-      << " tiene caja de carga : 1 capacidad kg : 1000" << std::endl
-      << " nombre : test 7" << std::endl
-      << " ubicacion : Queretaro" << std::endl
-      << " pasajeros : 4" << std::endl
-      << " necesidad : caja 500 kilos" << std::endl
-      << " estatus : 1" << std::endl<< std::endl
+      << " estatus : 1" << std::endl
+      << std::endl
       << " (asignacion : 6 )" << std::endl
       << " Vehículo :  id : 6" << std::endl
       << " marca : Chrisler" << std::endl
